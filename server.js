@@ -10,6 +10,7 @@ const env = require("dotenv").config();
 const app = express();
 const static = require("./routes/static");
 const expressLayouts = require("express-ejs-layouts");
+const vehicles = require("./models/vehicles");
 
 /* ***********************
  * View Engine & Templates
@@ -23,7 +24,10 @@ app.set("layout", "./layouts/layout");
  *************************/
 app.use(static);
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  res.render("index", {
+    title: "Home",
+    vehicle: vehicles.find((v) => v.id == "delorean"),
+  });
 });
 
 /* ***********************

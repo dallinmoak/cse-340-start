@@ -1,3 +1,25 @@
 <h1>
-  Hello, world!
+  Welcome to CSE Motors
 </h1>
+
+<div>
+  <h2>
+    <%- vehicle.make %> <%- vehicle.model %>
+  </h2>
+  <img src="<%- vehicle.image %>" alt="<%- vehicle.model %>">
+  <ul>
+    <% vehicle.features.forEach(feature=> { %>
+      <li><%- feature %></li>
+      <% }) %>
+  </ul>
+  <button>Own Today</button>
+</div>
+
+<div>
+  <h2>
+    <%- vehicle.model %> Upgrades
+  </h2>
+  <% vehicle.upgrades.forEach(upgrade=> { %>
+    <%- include( './partials/upgrade.ejs' , { upgrade: upgrade } ) %>
+      <% }) %>
+</div>

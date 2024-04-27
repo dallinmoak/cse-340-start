@@ -1,0 +1,11 @@
+<h2>
+  <%- vehicle.model %> Upgrades
+</h2>
+<ul>
+  <% vehicle.upgrades.forEach(upgrade=> { %>
+    <li>
+      <img src="<%- upgrade.image %>" alt="<%- upgrade.name %>">
+      <a href="<%- upgrade.path %>"><%- upgrade.name %></a>
+    </li>
+    <% }) %>
+</ul>

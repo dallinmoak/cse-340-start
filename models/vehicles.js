@@ -1,3 +1,4 @@
+const reviews = require("./reviews");
 const upgrades = require("./upgrades");
 
 module.exports = [
@@ -9,5 +10,6 @@ module.exports = [
     image_tn: "/images/vehicles/delorean-tn.jpg",
     features: ["3 Cup holders", "Superman doors", "Fuzzy dice!"],
     upgrades: upgrades["delorean"],
+    reviews: reviews["delorean"],
   },
 ];

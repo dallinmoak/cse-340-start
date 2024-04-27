@@ -1,0 +1,8 @@
+<h2>
+  <%- vehicle.make %> <%- vehicle.model %> Reviews
+</h2>
+<ul>
+  <% vehicle.reviews.forEach(review=> { %>
+    <li>"<%- review.content %>" (<%- review.rating %>/5)</li>
+    <% }) %>
+</ul>

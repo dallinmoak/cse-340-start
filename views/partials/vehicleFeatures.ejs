@@ -1,0 +1,9 @@
+<h2>
+  <%- vehicle.make %> <%- vehicle.model %>
+</h2>
+<ul>
+  <% vehicle.features.forEach(feature=> { %>
+    <li><%- feature %></li>
+    <% }) %>
+</ul>
+<button>Own Today</button>

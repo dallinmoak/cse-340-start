@@ -4,3 +4,13 @@
 *:after {
   box-sizing: border-box;
 }
+
+/******* Global Styles ***************/
+:root {
+  --textColor: #000;
+  --backgroundColor: #fff;
+  --highlightColor: #02b0d2;
+  --secondaryColor: #242332;
+
+  --mainSansFontFamily: "Inter", sans-serif;
+}

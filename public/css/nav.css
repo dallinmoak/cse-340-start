@@ -1,0 +1,16 @@
+#nav {
+  background-color: var(--secondaryColor);
+  color: var(--backgroundColor);
+}
+
+#nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 1.1em 0;
+}
+
+#nav li {
+  font-family: var(--mainSansFontFamily);
+  cursor: pointer;
+}

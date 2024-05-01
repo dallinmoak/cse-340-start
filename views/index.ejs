@@ -3,49 +3,18 @@
     Welcome to CSE Motors!
   </h1>
 
-  <div class="features-image">
-    <!-- <img src="<%- vehicle.image %>" alt="<%- vehicle.model %>"> -->
-    <!-- <div class="features"></div> -->
+  <div class="features-image" style="background-image: url('<%- vehicle.image %>');">
     <div class="features">
-      <%- include ("./partials/vehicleFeatures", { vehicle })%>
+      <%- include ("./partials/vehicle/vehicleFeatures", { vehicle })%>
     </div>
   </div>
 
   <div class="upgrades-reviews">
     <div>
-      <%- include("./partials/vehicleUpgrades", { vehicle }) %>
+      <%- include("./partials/vehicle/vehicleUpgrades", { vehicle }) %>
     </div>
     <div>
-      <%- include ("./partials/vehicleReviews", { vehicle })%>
+      <%- include ("./partials/vehicle/vehicleReviews", { vehicle })%>
     </div>
   </div>
 </div>
-<style>
-  #index h1 {
-    font-family: var(--mainSerifFontFamily);
-  }
-
-  #index .features-image {
-    width: 100%;
-    height: 17em;
-    background-image: url("<%- vehicle.image %>");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-  }
-
-  #index .features-image img {
-    justify-self: center;
-  }
-
-  #index .features-image .features {
-    position: absolute;
-    background-color: var(--backgroundTransparency);
-  }
-
-
-  #index .upgrades-reviews {
-    display: flex;
-    flex-direction: row;
-  }
-</style>

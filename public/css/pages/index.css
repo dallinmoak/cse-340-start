@@ -22,5 +22,13 @@
 
 #index .upgrades-reviews {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 491px) {
+  #index .upgrades-reviews {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: 1em;
+  }
 }

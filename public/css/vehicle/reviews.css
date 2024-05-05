@@ -1,0 +1,16 @@
+#v-reviews h2 {
+  font-family: var(--mainSerifFontFamily);
+}
+
+#v-reviews ul {
+  list-style-type: disc;
+  padding: 0;
+  padding-inline-start: 1em;
+  font-family: var(--mainSansFontFamily);
+  font-size: 1.2em;
+  font-weight: 650;
+}
+
+#v-reviews li {
+  margin: 1em 0;
+}

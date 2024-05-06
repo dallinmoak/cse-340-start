@@ -1,5 +1,210 @@
-@import "./globals.css";
-@import "./header.css";
-@import "./nav.css";
-@import "./vehicle.css";
-@import "./pages.css";
+/******* Global vars ***************/
+:root {
+  --textColor: #000;
+  --darkTextColor: #002c8a;
+  --backgroundColor: #fff;
+  --backgroundTransparency: rgba(255, 255, 255, 0.9);
+  --highlightColor: #02b0d2;
+  --higlightColorDark: #005464;
+  --secondaryColor: #242332;
+  --mainSansFontFamily: "Inter", sans-serif;
+  --mainSerifFontFamily: "PT Serif", serif;
+}
+
+body {
+  background: var(--backgroundColor);
+  margin: 0 auto;
+  padding: 0;
+}
+
+main {
+  padding: 0 0.5em;
+}
+
+/************ large screen ************/
+@media screen and (min-width: 491px) {
+  html {
+    background: conic-gradient(#fff 90deg, #000 90deg 180deg, #fff 180deg 270deg, #000 270deg);
+    background-size: 120px 120px;
+  }
+  body {
+    padding: 1em;
+    outline: var(--highlightColor) solid 5px;
+    max-width: min(100vw - 5em, 50em);
+    border-radius: 10px;
+    margin: 20px auto;
+  }
+}
+#index h1 {
+  font-family: var(--mainSerifFontFamily);
+}
+
+#index .features-image {
+  width: 100%;
+  height: 17em;
+  background-image: url("<%- vehicle.image %>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#index .features-image img {
+  justify-self: center;
+}
+
+#index .features-image .features {
+  position: absolute;
+  background-color: var(--backgroundTransparency);
+}
+
+#index .upgrades-reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 491px) {
+  #index .upgrades-reviews {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: 1em;
+  }
+}
+#nav {
+  background-color: var(--secondaryColor);
+  color: var(--backgroundColor);
+}
+
+#nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 1.1em 0;
+}
+
+#nav li {
+  font-family: var(--mainSansFontFamily);
+  cursor: pointer;
+}
+
+#top-header {
+  padding: 15px 0.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#top-header .siteName a {
+  font-family: var(--mainSansFontFamily);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2.5em;
+  color: var(--defaultTextColor);
+}
+
+#top-header #tools a {
+  font-family: var(--mainSansFontFamily);
+  font-variant: small-caps;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: var(--textColor);
+}
+
+#v-feat {
+  margin-left: 2em;
+  padding: 0.7em;
+}
+
+#v-feat h2 {
+  font-family: var(--mainSerifFontFamily);
+  color: var(--higlightColorDark);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+#v-feat ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 1em;
+  font-family: var(--mainSansFontFamily);
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--higlightColorDark);
+}
+
+#v-feat button {
+  cursor: pointer;
+  font-family: var(--mainSansFontFamily);
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--textColor);
+  background-color: var(--highlightColor);
+  border: outset 1px;
+  padding: 0.5em 1.2em;
+}
+
+#v-feat button:active {
+  border: inset 1px;
+}
+
+#v-reviews h2 {
+  font-family: var(--mainSerifFontFamily);
+}
+
+#v-reviews ul {
+  list-style-type: disc;
+  padding: 0;
+  padding-inline-start: 1em;
+  font-family: var(--mainSansFontFamily);
+  font-size: 1.2em;
+  font-weight: 650;
+}
+
+#v-reviews li {
+  margin: 1em 0;
+}
+
+#v-upgrades {
+  max-width: 27.5em;
+}
+
+#v-upgrades h2 {
+  font-family: var(--mainSerifFontFamily);
+}
+
+#v-upgrades ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  list-style-type: none;
+  padding: 0;
+}
+
+#v-upgrades a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--darkTextColor);
+  font-family: var(--mainSansFontFamily);
+  font-weight: 700;
+}
+
+#v-upgrades .img {
+  width: 100%;
+  height: 7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--highlightColor);
+  border: 1px solid black;
+}
+
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=styles.css.map */

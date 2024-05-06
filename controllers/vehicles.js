@@ -6,7 +6,7 @@ const getVehicle = (req, res) => {
   const id = reqVehicle ? reqVehicle : "delorean";
   const vehicle = vehicles.find((v) => v.id == id);
   if (vehicle) {
-    res.render("index", {
+    res.render("pages/home", {
       title: "Home",
       vehicle,
     });

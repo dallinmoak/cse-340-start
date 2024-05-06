@@ -1,0 +1,29 @@
+body {
+  background: var(--backgroundColor);
+  margin: 0 auto;
+  padding: 0;
+}
+
+main {
+  padding: 0 0.5em;
+}
+
+/************ large screen ************/
+@media screen and (min-width: $mobile-screen) {
+  html {
+    background: conic-gradient(
+      #fff 90deg,
+      #000 90deg 180deg,
+      #fff 180deg 270deg,
+      #000 270deg
+    );
+    background-size: 120px 120px;
+  }
+  body {
+    padding: 1em;
+    outline: var(--highlightColor) solid 5px;
+    max-width: min(calc(100vw - 5em), 50em);
+    border-radius: 10px;
+    margin: 20px auto;
+  }
+}

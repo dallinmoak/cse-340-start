@@ -1,37 +1,35 @@
+@use "sass:color";
+
 #v-feat {
   margin-left: 2em;
   padding: 0.7em;
-}
-
-#v-feat h2 {
-  font-family: var(--mainSerifFontFamily);
-  color: var(--higlightColorDark);
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-
-#v-feat ul {
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  margin-block-end: 1em;
-  font-family: var(--mainSansFontFamily);
-  font-size: 1.1em;
-  font-weight: 500;
-  color: var(--higlightColorDark);
-}
-
-#v-feat button {
-  cursor: pointer;
-  font-family: var(--mainSansFontFamily);
-  font-size: 0.95em;
-  font-weight: 700;
-  color: var(--textColor);
-  background-color: var(--highlightColor);
-  border: outset 1px;
-  padding: 0.5em 1.2em;
-}
-
-#v-feat button:active {
-  border: inset 1px;
+  & h2 {
+    font-family: $mainSerifFontFamily;
+    color: color.adjust($highlightColor, $lightness: -10%);
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  & ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 1em;
+    font-family: $mainSansFontFamily;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: color.adjust($highlightColor, $lightness: -10%);
+  }
+  & button {
+    cursor: pointer;
+    font-family: $mainSansFontFamily;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: $textColor;
+    background-color: $highlightColor;
+    border: outset 1px;
+    padding: 0.5em 1.2em;
+    &:active {
+      border: inset 1px;
+    }
+  }
 }

@@ -1,18 +1,6 @@
 /******* Global vars ***************/
-:root {
-  --textColor: #000;
-  --darkTextColor: #002c8a;
-  --backgroundColor: #fff;
-  --backgroundTransparency: rgba(255, 255, 255, 0.9);
-  --highlightColor: #02b0d2;
-  --higlightColorDark: #005464;
-  --secondaryColor: #242332;
-  --mainSansFontFamily: "Inter", sans-serif;
-  --mainSerifFontFamily: "PT Serif", serif;
-}
-
 body {
-  background: var(--backgroundColor);
+  background: #fff;
   margin: 0 auto;
   padding: 0;
 }
@@ -21,7 +9,6 @@ main {
   padding: 0 0.5em;
 }
 
-/************ large screen ************/
 @media screen and (min-width: 491px) {
   html {
     background: conic-gradient(#fff 90deg, #000 90deg 180deg, #fff 180deg 270deg, #000 270deg);
@@ -29,16 +16,15 @@ main {
   }
   body {
     padding: 1em;
-    outline: var(--highlightColor) solid 5px;
+    outline: #02b0d2 solid 5px;
     max-width: min(100vw - 5em, 50em);
     border-radius: 10px;
     margin: 20px auto;
   }
 }
 #index h1 {
-  font-family: var(--mainSerifFontFamily);
+  font-family: "PT Serif", serif;
 }
-
 #index .features-image {
   width: 100%;
   height: 17em;
@@ -47,21 +33,17 @@ main {
   background-position: center;
   background-size: contain;
 }
-
 #index .features-image img {
   justify-self: center;
 }
-
 #index .features-image .features {
   position: absolute;
-  background-color: var(--backgroundTransparency);
+  background-color: rgba(255, 255, 255, 0.9);
 }
-
 #index .upgrades-reviews {
   display: flex;
   flex-direction: column;
 }
-
 @media screen and (min-width: 491px) {
   #index .upgrades-reviews {
     justify-content: flex-end;
@@ -69,20 +51,19 @@ main {
     gap: 1em;
   }
 }
-#nav {
-  background-color: var(--secondaryColor);
-  color: var(--backgroundColor);
-}
 
+#nav {
+  background-color: #242332;
+  color: #fff;
+}
 #nav ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
   padding: 1.1em 0;
 }
-
 #nav li {
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   cursor: pointer;
 }
 
@@ -92,75 +73,67 @@ main {
   justify-content: space-between;
   align-items: center;
 }
-
 #top-header .siteName a {
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   text-decoration: none;
   font-weight: 700;
   font-size: 2.5em;
-  color: var(--defaultTextColor);
+  color: #000;
 }
-
 #top-header #tools a {
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   font-variant: small-caps;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.5em;
-  color: var(--textColor);
+  color: #000;
 }
 
 #v-feat {
   margin-left: 2em;
   padding: 0.7em;
 }
-
 #v-feat h2 {
-  font-family: var(--mainSerifFontFamily);
-  color: var(--higlightColorDark);
+  font-family: "PT Serif", serif;
+  color: #02869f;
   margin-block-start: 0;
   margin-block-end: 0;
 }
-
 #v-feat ul {
   list-style-type: none;
   padding-inline-start: 0;
   margin-block-start: 0;
   margin-block-end: 1em;
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   font-size: 1.1em;
   font-weight: 500;
-  color: var(--higlightColorDark);
+  color: #02869f;
 }
-
 #v-feat button {
   cursor: pointer;
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   font-size: 0.95em;
   font-weight: 700;
-  color: var(--textColor);
-  background-color: var(--highlightColor);
+  color: #000;
+  background-color: #02b0d2;
   border: outset 1px;
   padding: 0.5em 1.2em;
 }
-
 #v-feat button:active {
   border: inset 1px;
 }
 
 #v-reviews h2 {
-  font-family: var(--mainSerifFontFamily);
+  font-family: "PT Serif", serif;
 }
-
 #v-reviews ul {
   list-style-type: disc;
   padding: 0;
   padding-inline-start: 1em;
-  font-family: var(--mainSansFontFamily);
+  font-family: "Inter", sans-serif;
   font-size: 1.2em;
   font-weight: 650;
 }
-
 #v-reviews li {
   margin: 1em 0;
 }
@@ -168,11 +141,9 @@ main {
 #v-upgrades {
   max-width: 27.5em;
 }
-
 #v-upgrades h2 {
-  font-family: var(--mainSerifFontFamily);
+  font-family: "PT Serif", serif;
 }
-
 #v-upgrades ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -180,31 +151,22 @@ main {
   list-style-type: none;
   padding: 0;
 }
-
 #v-upgrades a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--darkTextColor);
-  font-family: var(--mainSansFontFamily);
+  color: #002c8a;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
 }
-
 #v-upgrades .img {
   width: 100%;
   height: 7em;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--highlightColor);
+  background-color: #02b0d2;
   border: 1px solid black;
-}
-
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=styles.css.map */

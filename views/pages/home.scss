@@ -1,34 +1,33 @@
-#index h1 {
-  font-family: var(--mainSerifFontFamily);
-}
+@use "sass:color";
 
-#index .features-image {
-  width: 100%;
-  height: 17em;
-  background-image: url("<%- vehicle.image %>");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-#index .features-image img {
-  justify-self: center;
-}
-
-#index .features-image .features {
-  position: absolute;
-  background-color: var(--backgroundTransparency);
-}
-
-#index .upgrades-reviews {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: $mobile-screen) {
-  #index .upgrades-reviews {
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    gap: 1em;
+#index {
+  & h1 {
+    font-family: $mainSerifFontFamily;
+  }
+  & .features-image {
+    width: 100%;
+    height: 17em;
+    background-image: url("<%- vehicle.image %>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    img {
+      justify-self: center;
+    }
+    .features {
+      position: absolute;
+      background-color: color.adjust($backgroundColor, $alpha: -0.1);
+    }
+  }
+  & .upgrades-reviews {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (min-width: $mobile-screen) {
+    .upgrades-reviews {
+      justify-content: flex-end;
+      flex-direction: row-reverse;
+      gap: 1em;
+    }
   }
 }

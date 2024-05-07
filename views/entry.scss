@@ -1,16 +1,13 @@
 /******* Global vars ***************/
-:root {
-  --textColor: #000;
-  --darkTextColor: #002c8a;
-  --backgroundColor: #fff;
-  --backgroundTransparency: rgba(255, 255, 255, 0.9);
-  --highlightColor: #02b0d2;
-  --higlightColorDark: #005464;
-  --secondaryColor: #242332;
+$textColor: #000;
+$darkTextColor: #002c8a;
+$secondaryColor: #242332;
+$highlightColor: #02b0d2;
+$backgroundColor: #fff;
 
-  --mainSansFontFamily: "Inter", sans-serif;
-  --mainSerifFontFamily: "PT Serif", serif;
-}
+$mainSansFontFamily: "Inter", sans-serif;
+$mainSerifFontFamily: "PT Serif", serif;
+
 $mobile-screen: 491px;
 
 // layouts
@@ -24,14 +21,3 @@ $mobile-screen: 491px;
 @import "../views/partials/vehicle/vehiclefeatures.scss";
 @import "../views/partials/vehicle/vehicleReviews.scss";
 @import "../views/partials/vehicle/vehicleUpgrades.scss";
-
-
-
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-

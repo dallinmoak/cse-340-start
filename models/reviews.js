@@ -7,7 +7,7 @@ module.exports = {
     },
     {
       id: 2,
-      content: "Coolest rilde on the road.",
+      content: "Coolest ride on the road.",
       rating: 4,
     },
     {

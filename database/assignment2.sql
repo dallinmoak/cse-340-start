@@ -20,17 +20,31 @@ update course_340.account a
 set
   account_type = 'Admin'
 where
-  a.account_firstname = 'Tony'
-  and a.account_lastname = 'Stark'
-  and a.account_email = 'tony@starkent.com';
+  a.account_id = (
+    select
+      a.account_id
+    from
+      course_340.account a
+    where
+      a.account_firstname = 'Tony'
+      and a.account_lastname = 'Stark'
+      and a.account_email = 'tony@starkent.com'
+  );
 
 
 --task 3
 delete from course_340.account a
 where
-  a.account_firstname = 'Tony'
-  and a.account_lastname = 'Stark'
-  and a.account_email = 'tony@starkent.com';
+  a.account_id = (
+    select
+      a.account_id
+    from
+      course_340.account a
+    where
+      a.account_firstname = 'Tony'
+      and a.account_lastname = 'Stark'
+      and a.account_email = 'tony@starkent.com'
+  );
 
 
 --task 4
@@ -42,8 +56,15 @@ set
     'a huge interior'
   )
 where
-  i.inv_model = 'Hummer'
-  and i.inv_make = 'GM';
+  i.inv_id = (
+    select
+      inv_id
+    from
+      course_340.inventory i
+    where
+      i.inv_model = 'Hummer'
+      and i.inv_make = 'GM'
+  );
 
 
 --task 5

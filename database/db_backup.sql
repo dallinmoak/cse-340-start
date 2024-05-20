@@ -93,7 +93,14 @@ values
     25000,
     101222,
     'Silver',
-    2
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Sport'
+    )
   ),
   (
     'Batmobile',
@@ -105,7 +112,14 @@ values
     65000,
     29887,
     'Black',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'FBI',
@@ -117,7 +131,14 @@ values
     20000,
     19851,
     'Brown',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'Dog ',
@@ -129,7 +150,14 @@ values
     35000,
     71632,
     'Brown',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'Jeep',
@@ -141,7 +169,14 @@ values
     28045,
     41205,
     'Yellow',
-    3
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'SUV'
+    )
   ),
   (
     'Lamborghini',
@@ -153,7 +188,14 @@ values
     417650,
     71003,
     'Blue',
-    2
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Sport'
+    )
   ),
   (
     'Aerocar International',
@@ -165,7 +207,14 @@ values
     700000,
     18956,
     'Red',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'Monster',
@@ -177,7 +226,14 @@ values
     150000,
     3998,
     'Blue',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'Cadillac',
@@ -189,7 +245,14 @@ values
     75195,
     41958,
     'Black',
-    4
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Truck'
+    )
   ),
   (
     'GM',
@@ -201,7 +264,14 @@ values
     58800,
     56564,
     'Yellow',
-    4
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Truck'
+    )
   ),
   (
     'Mechanic',
@@ -213,7 +283,14 @@ values
     100,
     200125,
     'Rust',
-    5
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Sedan'
+    )
   ),
   (
     'Ford',
@@ -225,7 +302,14 @@ values
     30000,
     26357,
     'Black',
-    5
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Sedan'
+    )
   ),
   (
     'Mystery',
@@ -237,7 +321,14 @@ values
     10000,
     128564,
     'Green',
-    1
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Custom'
+    )
   ),
   (
     'Spartan',
@@ -249,7 +340,14 @@ values
     50000,
     38522,
     'Red',
-    4
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Truck'
+    )
   ),
   (
     'Ford',
@@ -261,7 +359,14 @@ values
     10000,
     108247,
     'White',
-    5
+    (
+      select
+        classification_id
+      from
+        course_340.classification
+      where
+        classification_name = 'Sedan'
+    )
   );
 
 
@@ -276,8 +381,15 @@ set
     'a huge interior'
   )
 where
-  i.inv_model = 'Hummer'
-  and i.inv_make = 'GM';
+  i.inv_id = (
+    select
+      inv_id
+    from
+      course_340.inventory i
+    where
+      i.inv_model = 'Hummer'
+      and i.inv_make = 'GM'
+  );
 
 
 -- --------------------------------

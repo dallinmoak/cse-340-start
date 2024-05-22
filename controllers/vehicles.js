@@ -1,4 +1,4 @@
-const vehicles = require("../models/vehicles");
+import vehicles from "../models/vehicles.js";
 
 const getVehicle = (req, res) => {
   const query = req.query;
@@ -15,4 +15,4 @@ const getVehicle = (req, res) => {
   }
 };
 
-module.exports = getVehicle;
+export default { getVehicle };

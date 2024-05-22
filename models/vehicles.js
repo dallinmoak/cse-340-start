@@ -1,7 +1,6 @@
-const reviews = require("./reviews");
-const upgrades = require("./upgrades");
-
-module.exports = [
+import reviews from "./reviews.js";
+import upgrades from "./upgrades.js";
+export default [
   {
     id: "delorean",
     make: "DMC",

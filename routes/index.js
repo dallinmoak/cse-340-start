@@ -1,6 +1,8 @@
-const router = require("express").Router();
-const getVehicle = require("../controllers/vehicles");
+import { Router } from "express";
+import vController from "../controllers/vehicles.js";
 
-router.use("/", getVehicle);
+const router = Router();
 
-module.exports = router;
+router.use("/", vController.getVehicle);
+
+export default router;

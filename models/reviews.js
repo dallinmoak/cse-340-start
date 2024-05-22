@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   delorean: [
     {
       id: 1,

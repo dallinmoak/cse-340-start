@@ -1,8 +1,8 @@
 import { Router } from "express";
-import vController from "../controllers/vehicles.js";
+import baseController from "../controllers/baseController.js";
 
 const router = Router();
 
-router.use("/", vController.getVehicle);
+router.use("/", baseController.buildHome);
 
 export default router;

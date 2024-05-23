@@ -16,7 +16,7 @@ app.use(routes);
 const port = process.env.PORT;
 const host = process.env.HOST;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`);
 });
 

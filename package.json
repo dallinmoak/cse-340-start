@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js & pnpm run sass",
+    "dev": "nodemon server.js",
     "build": "sass views/entry.scss public/css/styles.css",
     "sass": "sass --watch views/entry.scss public/css/styles.css"
   },

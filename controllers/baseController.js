@@ -1,4 +1,7 @@
+import utils from "../utils/index.js";
+
 const buildHome = async (req, res) => {
+  const navData = await utils.getNavData();
   let error;
   if (!error) {
     res.render("pages/home", {
@@ -56,7 +59,7 @@ const buildHome = async (req, res) => {
           },
         ],
       },
-      navData: { a: "asa" },
+      navData,
     });
   } else {
     console.log(error);

@@ -62,9 +62,14 @@ main {
   list-style-type: none;
   padding: 1.1em 0;
 }
-#nav li {
+#nav li > a {
+  color: #fff;
   font-family: "Inter", sans-serif;
   cursor: pointer;
+  text-decoration: none;
+}
+#nav li > a:hover {
+  text-decoration: underline;
 }
 
 #top-header {

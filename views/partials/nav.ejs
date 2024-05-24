@@ -1,9 +1,11 @@
 <nav id="nav">
   <ul>
-    <li>Home</li>
-    <li>Custom</li>
-    <li>Sedan</li>
-    <li>SUV</li>
-    <li>Truck</li>
+    <% navData.forEach(navItem=> { %>
+      <li>
+        <a href="/inv/type/<%- navItem.id%>" title="See our inventory of <%- navItem.name %>">
+          <%- navItem.name %>
+        </a>
+      </li>
+      <% }) %>
   </ul>
 </nav>

@@ -1,0 +1,14 @@
+<li>
+  <a href="../../<%- inv_id %>" title="View <%- inv_make %> <%- inv_model %> details" class="img-link">
+    <img src="<%- inv_thumbnail %>" alt="Image of <%- inv_make %> <%- inv_model %>" />
+  </a>
+  <div>
+    <hr />
+    <h2>
+      <a href="../../<%- inv_id %>" title="View <%- inv_make %> <%- inv_model %> details">
+        <%- inv_make %> <%- inv_model %>
+      </a>
+    </h2>
+    <span>$<%- new Intl.NumberFormat('en-US').format(inv_price) %></span>
+  </div>
+</li>

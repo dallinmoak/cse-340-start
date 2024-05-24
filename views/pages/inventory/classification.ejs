@@ -1,1 +1,8 @@
-<h1>classification <%- classification.id %></h1>
+<div id="classificationList">
+  <h1><%- classification.name %> Cars</h1>
+  <ul>
+    <% invList.forEach((vehicle)=> { %>
+      <%- include('../../partials/classification/vehicleListItem.ejs', {...vehicle}) %>
+        <% }) %>
+  </ul>
+</div>

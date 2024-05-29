@@ -15,6 +15,7 @@ const getInventoryByClassificationId = async (classificationId) => {
     return data.rows;
   } catch (e) {
     console.error(e);
+    throw new Error(e.message);
   }
 };
 

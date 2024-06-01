@@ -1,0 +1,28 @@
+#invItemComponent {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: $mobile-screen) {
+    flex-direction: row;
+  }
+  gap: 1em;
+  & .img {
+    & img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  & .text {
+    @media screen and (min-width: $mobile-screen) {
+      flex-basis: 40%;
+    }
+  }
+  & p.color {
+    display: flex;
+    & span {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin: auto 0.5em;
+    }
+  }
+}

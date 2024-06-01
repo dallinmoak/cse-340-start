@@ -18,6 +18,9 @@ $mobile-screen: 491px;
 // components
 @import "../views/partials/nav.scss";
 @import "../views/partials/header.scss";
+//inventory components
+@import "../views/partials/inventory/item.scss";
+
 //vehicle components
 @import "../views/partials/vehicle/vehiclefeatures.scss";
 @import "../views/partials/vehicle/vehicleReviews.scss";

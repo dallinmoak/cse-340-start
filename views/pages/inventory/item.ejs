@@ -1,0 +1,5 @@
+<div class="invItemPage">
+  <h1><a href="../type/<%- invItem.classification_id%>"><%- invItem.classification_name %></a> > <%-
+      `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}` %></h1>
+  <%- include('../../partials/inventory/item.ejs', {...invItem}) %>
+</div>

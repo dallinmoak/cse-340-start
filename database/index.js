@@ -7,7 +7,6 @@ let defaultExport;
 const dbConnection = {
   connectionString: process.env.DB_CONNECTION_STRING,
 };
-console.log("****db initialze env", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
   const pool = new Pool({
     ...dbConnection,

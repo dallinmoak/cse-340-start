@@ -1,0 +1,19 @@
+<div id="invItemComponent">
+  <div class="img">
+    <img src="<%- inv_image %>" alt="<%- `${inv_make} ${inv_model}` %>">
+  </div>
+  <div class="text">
+    <p>classification: <a href="../type/<%- classification_id %>"><%- classification_name %></a></p>
+    <p>make: <%- inv_make %></p>
+    <p>model: <%- inv_model %></p>
+    <p>year: <%- inv_year %></p>
+    <p>description: <%- inv_description %> </p>
+    <p>price: $<%- new Intl.NumberFormat('en-US').format(inv_price) %></p>
+    <p>miles: <%- new Intl.NumberFormat('en-US').format(inv_miles) %></p>
+    <p class="color">
+      color:
+      <span style="background-color: <%- inv_color.toLowerCase() %>;"></span>
+      <%- inv_color %>
+    </p>
+  </div>
+</div>

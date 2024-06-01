@@ -19,4 +19,20 @@ const getInventoryByClassificationId = async (classificationId) => {
   }
 };
 
-export default { getClassifications, getInventoryByClassificationId };
+const getInventoryItemById = async (itemId) => {
+  const queryText =
+    "SELECT * from course_340.inventory as i join course_340.classification as c on i.classification_id = c.classification_id WHERE inv_id = $1";
+  try {
+    const data = await pool.query(queryText, [itemId]);
+    return data.rows[0];
+  } catch (e) {
+    console.error(e);
+    throw new Error(e.message);
+  }
+};
+
+export default {
+  getClassifications,
+  getInventoryByClassificationId,
+  getInventoryItemById,
+};

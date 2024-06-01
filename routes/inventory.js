@@ -1,11 +1,9 @@
 import { Router } from "express";
-import inventoryController from "../controllers/inventory.js";
+import invC from "../controllers/inventory.js";
 
 const router = Router();
 
-router.get(
-  "/type/:classificationId",
-  inventoryController.buildByClassificationId
-);
+router.get("/type/:classificationId", invC.buildByClassificationId);
+router.get("/item/:itemId", invC.builByInventoryId);
 
 export default router;

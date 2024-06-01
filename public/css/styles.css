@@ -122,6 +122,35 @@ main {
   color: #000;
 }
 
+#invItemComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+@media screen and (min-width: 491px) {
+  #invItemComponent {
+    flex-direction: row;
+  }
+}
+#invItemComponent .img img {
+  width: 100%;
+  height: auto;
+}
+@media screen and (min-width: 491px) {
+  #invItemComponent .text {
+    flex-basis: 40%;
+  }
+}
+#invItemComponent p.color {
+  display: flex;
+}
+#invItemComponent p.color span {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: auto 0.5em;
+}
+
 #v-feat {
   margin-left: 2em;
   padding: 0.7em;

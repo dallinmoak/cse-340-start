@@ -1,3 +1,4 @@
 <div class="invItemPage">
-  <%- include('../../partials/inventory/item.ejs', {invItem}) %>
+  <h1><%- `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}` %></h1>
+  <%- include('../../partials/inventory/item.ejs', {...invItem}) %>
 </div>

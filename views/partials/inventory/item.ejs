@@ -1,1 +1,10 @@
-<%- JSON.stringify(invItem) %>
+<p>id: <%- inv_id %></p>
+<p>make: <%- inv_make %></p>
+<p>model: <%- inv_model %></p>
+<p>year: <%- inv_year %></p>
+<p>description: <%- inv_description %> </p>
+<img src="<%- inv_image %>" alt="<%- `${inv_make} ${inv_model}` %>">
+<p>price: $<%- new Intl.NumberFormat('en-US').format(inv_price) %></p>
+<p>miles: <%- new Intl.NumberFormat('en-US').format(inv_miles) %></p>
+<p>color: <%- inv_color %></p>
+<p>classification: <a href="../type/<%- classification_id %>"><%- classification_name %></a></p>

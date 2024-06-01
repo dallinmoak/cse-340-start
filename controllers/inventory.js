@@ -1,4 +1,4 @@
-import utils from "../utils/index.js";
+import { getNavData } from "../utils/index.js";
 import inventoryModel from "../models/inventory-model.js";
 
 const buildByClassificationId = async (req, res, next) => {
@@ -13,7 +13,7 @@ const buildByClassificationId = async (req, res, next) => {
         message: `classification id "${classification_id}" not found`,
       });
     }
-    const navData = await utils.getNavData();
+    const navData = await getNavData();
     res.render("pages/inventory/classification", {
       title: invData[0].classification_name,
       navData,

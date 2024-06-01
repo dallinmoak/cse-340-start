@@ -5,8 +5,8 @@
   "description": "Starter project for CSE 340",
   "main": "server.js",
   "scripts": {
-    "start": "set NODE_ENV=production && node server.js",
-    "dev": "set NODE_ENV=development && nodemon server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
     "build": "sass views/entry.scss public/css/styles.css",
     "sass": "sass --watch views/entry.scss public/css/styles.css"
   },
@@ -21,6 +21,7 @@
     "sass": "^1.76.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.0"
   }
 }

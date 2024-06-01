@@ -1,7 +1,7 @@
-import utils from "../utils/index.js";
+import { getNavData } from "../utils/index.js";
 
 const buildHome = async (req, res) => {
-  const navData = await utils.getNavData();
+  const navData = await getNavData();
   res.render("pages/home", {
     title: "Home",
     vehicle,

@@ -31,4 +31,29 @@ const buildByClassificationId = async (req, res, next) => {
   }
 };
 
-export default { buildByClassificationId };
+const builByInventoryId = async (req, res, next) => {
+  try {
+    const invItem = await inventoryModel.getInventoryItemById(
+      req.params.itemId
+    );
+    if (!invItem || invItem.length === 0) {
+      return next({
+        status: 404,
+        message: `inventory item id "${req.params.itemId}" not found`,
+      });
+    }
+    const navData = await getNavData();
+    res.render("pages/inventory/item", {
+      title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
+      navData,
+      invItem,
+    });
+  } catch (e) {
+    return next({
+      status: 500,
+      message: `error retrieving inventory data: ${e.message}`,
+    });
+  }
+};
+
+export default { buildByClassificationId, builByInventoryId };

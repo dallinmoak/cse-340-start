@@ -9,14 +9,20 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    li {
+    a {
       width: 40%;
       min-height: 14em;
       outline: $highlightColor solid 2px;
       border-radius: 7px;
       padding: 1em;
       margin: 1em;
-      a.img-link {
+      color: $textColor;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        box-shadow: 0 0 0.5em $highlightColor;
+      }
+      div.img-container {
         display: flex;
         justify-content: center;
       }

@@ -3,9 +3,18 @@ import "dotenv/config";
 import staticRoutes from "./routes/static.js";
 import routes from "./routes/index.js";
 import expressLayouts from "express-ejs-layouts";
-import { errorResponder } from "./utils/index.js";
+import { errorResponder, pgSession } from "./utils/index.js";
+import connectFlash from "connect-flash";
+import expressMessages from "express-messages";
 
 const app = express();
+
+app.use(pgSession());
+app.use(connectFlash());
+app.use((req, res, next) => {
+  res.locals.messages = expressMessages(req, res);
+  next();
+});
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);
@@ -13,7 +22,6 @@ app.set("layout", "./layouts/layout");
 
 app.use(staticRoutes);
 app.use(routes);
-// app.use(handleErrors(routes));
 
 app.use(errorResponder);
 

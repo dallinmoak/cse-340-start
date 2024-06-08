@@ -1,6 +1,10 @@
 import invModel from "../models/inventory-model.js";
 import "dotenv/config";
 
+import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
+import pool from "../database/index.js";
+
 const { getClassifications } = invModel;
 const getNavData = async () => {
   const data = await getClassifications();
@@ -37,4 +41,22 @@ const errorResponder = async (e, req, res, next) => {
     navData,
   });
 };
-export { getNavData, handleErrors, errorResponder };
+
+const pgConnector = connectPgSimple(session);
+const pgStore = new pgConnector({
+  createTableIfMissing: true,
+  schemaName: "course_340",
+  pool,
+});
+const pgSession = () => {
+  const sessionOptions = {
+    store: pgStore,
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "sid",
+  };
+  return session(sessionOptions);
+};
+
+export { getNavData, handleErrors, errorResponder, pgSession };

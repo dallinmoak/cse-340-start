@@ -5,6 +5,7 @@ import {
   getRegistrationForm,
 } from "../utils/index.js";
 import { vehicle } from "../utils/homePageVehicle.js";
+import bcrypt from "bcryptjs";
 
 const getLoginPage = async (req, res) => {
   const navData = await getNavData();
@@ -35,17 +36,29 @@ const getRegistrationPage = async (req, res) => {
 
 const registerAccount = async (req, res, next) => {
   try {
-    const newAccount = await createAccount(req.body);
-    if (!newAccount?.rows) {
-      req.flash("error", "Account creation failed");
-      throw new Error(`Account creation failed: ${newAccount}`);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    try {
+      const newAccount = await createAccount({
+        ...req.body,
+        password: hashedPassword,
+      });
+      if (!newAccount?.rows) {
+        req.flash("error", "Account creation failed");
+        throw new Error(`Account creation failed: ${newAccount}`);
+      }
+      req.flash("success", "Account created successfully");
+      res.status(201).render("pages/account/login", {
+        title: "Login",
+        navData: await getNavData(),
+        formConfig: getLoginForm(),
+      });
+    } catch (e) {
+      console.error(e);
+      next({
+        status: 500,
+        message: e.message,
+      });
     }
-    req.flash("success", "Account created successfully");
-    res.status(201).render("pages/account/login", {
-      title: "Login",
-      navData: await getNavData(),
-      formConfig: getLoginForm(),
-    });
   } catch (e) {
     console.error(e);
     next({

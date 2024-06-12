@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******* Global vars ***************/
 body {
   background: #fff;
@@ -126,6 +127,36 @@ main {
   font-weight: 700;
   font-size: 1.5em;
   color: #000;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  max-width: 20rem;
+}
+.formField input {
+  border-radius: 4px;
+  border-style: solid;
+}
+.formField input:focus-visible {
+  outline-offset: 1px;
+}
+.formField input + span::after {
+  font-size: 0.8rem;
+}
+.formField input:invalid:not(:placeholder-shown) {
+  border-color: red;
+  outline-color: red;
+}
+.formField input:invalid:not(:placeholder-shown) + span::after {
+  content: "❌";
+}
+.formField input:valid:required, .formField input:valid:focus, .formField input:valid:focus-visible {
+  border-color: green;
+  outline-color: green;
+}
+.formField input:valid:required + span::after, .formField input:valid:focus + span::after, .formField input:valid:focus-visible + span::after {
+  content: "✅";
 }
 
 #invItemComponent {

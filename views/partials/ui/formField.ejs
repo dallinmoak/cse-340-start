@@ -1,0 +1,10 @@
+<div class="formField">
+  <label for="<%- id %>"><%- label %></label>
+  <div>
+    <input type="<%- type %>" name="<%- name %>" <%- required? "required" : "" %>
+    <%- pattern? `pattern="${pattern}" ` : "" %> id="<%- id %>" placeholder="<%- placeholder %>"
+          <%- value ? `value="${value}" ` : "" %>
+            >
+            <span></span>
+  </div>
+</div>

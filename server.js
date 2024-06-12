@@ -6,6 +6,7 @@ import expressLayouts from "express-ejs-layouts";
 import { errorResponder, pgSession } from "./utils/index.js";
 import connectFlash from "connect-flash";
 import expressMessages from "express-messages";
+import bodyParser from "body-parser";
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use((req, res, next) => {
   res.locals.messages = expressMessages(req, res);
   next();
 });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);

@@ -59,4 +59,105 @@ const pgSession = () => {
   return session(sessionOptions);
 };
 
-export { getNavData, handleErrors, errorResponder, pgSession };
+const getLoginForm = (prefilledVals) => {
+  const formData = [
+    {
+      name: "email",
+      id: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "enter a valid email",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "password",
+      id: "password",
+      label: "Password",
+      type: "password",
+      placeholder: "enter a password",
+      required: true,
+      pattern:
+        "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$",
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/account/login",
+    method: "POST",
+    submitLabel: "Login",
+  };
+};
+
+const getRegistrationForm = (prefilledVals) => {
+  const formData = [
+    {
+      name: "firstName",
+      id: "firstName",
+      label: "First Name",
+      type: "text",
+      placeholder: "enter your first name",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "lastName",
+      id: "lastName",
+      label: "Last Name",
+      type: "text",
+      placeholder: "enter your last name",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "email",
+      id: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "enter a valid email",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "password",
+      id: "password",
+      label: "Password",
+      type: "password",
+      placeholder: "enter a password",
+      required: true,
+      pattern:
+        "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$",
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/account/register",
+    method: "POST",
+    submitLabel: "Register",
+  };
+};
+
+export {
+  getNavData,
+  handleErrors,
+  errorResponder,
+  pgSession,
+  getLoginForm,
+  getRegistrationForm,
+};

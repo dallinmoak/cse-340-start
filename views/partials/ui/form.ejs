@@ -1,6 +1,9 @@
-<form action="<%- formConfig.action %>" method="<%- formConfig.method %>">
+<form
+    action="<%- formConfig.action %>"
+    method="<%- formConfig.method %>"
+>
   <% formConfig.formData.forEach(datum=> { %>
-    <%- include("./formField", { ...datum }) %>
-      <% }) %>
-        <button type="submit"><%- formConfig.submitLabel %></button>
+  <%- include("./formField", { ...datum }) %>
+  <% }) %>
+  <button type="submit"><%- formConfig.submitLabel %></button>
 </form>

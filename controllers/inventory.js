@@ -1,4 +1,8 @@
-import { getNavData } from "../utils/index.js";
+import {
+  getAddCategoryForm,
+  getAddItemForm,
+  getNavData,
+} from "../utils/index.js";
 import inventoryModel from "../models/inventory-model.js";
 
 const buildByClassificationId = async (req, res, next) => {
@@ -56,4 +60,79 @@ const builByInventoryId = async (req, res, next) => {
   }
 };
 
-export default { buildByClassificationId, builByInventoryId };
+const buildAdminView = async (req, res) => {
+  res.render("pages/inventory/admin", {
+    title: "Vehicle Management",
+    navData: await getNavData(),
+  });
+};
+
+const buildAddCategoryView = async (req, res) => {
+  res.render("pages/inventory/add-category", {
+    title: "Add Vehicle Category",
+    navData: await getNavData(),
+    formConfig: getAddCategoryForm(),
+  });
+};
+
+const addCategory = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const newRecord = await inventoryModel.createCategory(name);
+    if (!newRecord) {
+      throw new Error("Error creating category");
+    } else {
+      console.log("created category:", newRecord);
+      req.flash(
+        "success",
+        `Category ${newRecord.classification_name} added successfully`
+      );
+      res.redirect("/inv");
+    }
+  } catch (e) {
+    return next({
+      status: 500,
+      message: `error adding category: ${e.message}`,
+    });
+  }
+};
+
+const buildAddItemView = async (req, res) => {
+  res.render("pages/inventory/add-item", {
+    title: "Add Vehicle",
+    navData: await getNavData(),
+    formConfig: await getAddItemForm(),
+  });
+};
+
+const addItem = async (req, res, next) => {
+  const newData = req.body;
+  try {
+    const newRecord = await inventoryModel.createInventoryItem({ ...newData });
+    if (!newRecord) {
+      throw new Error("Error adding item");
+    } else {
+      console.log("created item:", newRecord);
+      req.flash(
+        "success",
+        `Vehicle with id ${newRecord.inv_id} added successfully`
+      );
+      res.redirect(`/inv/item/${newRecord.inv_id}`);
+    }
+  } catch (e) {
+    return next({
+      status: 500,
+      message: `error adding item: ${e.message}`,
+    });
+  }
+};
+
+export default {
+  buildByClassificationId,
+  builByInventoryId,
+  buildAdminView,
+  buildAddCategoryView,
+  addCategory,
+  buildAddItemView,
+  addItem,
+};

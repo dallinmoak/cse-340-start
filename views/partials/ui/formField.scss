@@ -30,4 +30,10 @@
       }
     }
   }
+  label {
+    span.required {
+      color: red;
+      font-weight: bold;
+    }
+  }
 }

@@ -1,10 +1,46 @@
 <div class="formField">
-  <label for="<%- id %>"><%- label %></label>
+  <label for="<%- id %>">
+    <%- label %>
+    <%- required? `<span class="required">*</span>`: "" %>
+  </label>
   <div>
-    <input type="<%- type %>" name="<%- name %>" <%- required? "required" : "" %>
-    <%- pattern? `pattern="${pattern}" ` : "" %> id="<%- id %>" placeholder="<%- placeholder %>"
-          <%- value ? `value="${value}" ` : "" %>
-            >
-            <span></span>
+    <% if( typeof (type)=='object' ) { %>
+    <select
+        name="<%- name %>"
+        id="<%- id %>"
+        <%- required? "required" : "" %>
+    >
+      <option
+          value=""
+          disabled
+          selected
+      ><%- placeholder %></option>
+      <% type.options.forEach( (option)=> { %>
+      <option
+          value="<%- option.value %>"
+          <%- value==option.value ? "selected" : "" %>
+      ><%- option.label %></option>
+      <% }) %>
+    </select>
+    <% } else if (type=="textarea" ) { %>
+    <textarea
+        id=" <%- id %>"
+        name="<%- name %>"
+        <%- required? "required" : "" %>
+        <%- pattern? `pattern="${pattern}" `: "" %>
+        data-hasval="<%- value ? "true" : "false" %>"
+    ><%- value %></textarea>
+    <% } else { %>
+    <input
+        type="<%- type %>"
+        name="<%- name %>"
+        <%- required? "required" : "" %>
+        <%- pattern? `pattern="${pattern}" ` : "" %>
+        id="<%- id %>"
+        placeholder="<%- placeholder %>"
+        <%- value ? `value="${value}" ` : "" %>
+    >
+    <% } %>
+    <span></span>
   </div>
 </div>

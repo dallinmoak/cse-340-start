@@ -153,6 +153,157 @@ const getRegistrationForm = (prefilledVals) => {
   };
 };
 
+const getAddCategoryForm = (prefilledVals) => {
+  const formData = [
+    {
+      name: "name",
+      id: "name",
+      label: "Category Name",
+      type: "text",
+      placeholder: "name for the new category",
+      required: true,
+      pattern: "^\\s*[a-zA-Z0-9]+\\s*$",
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/inv/add-category",
+    method: "POST",
+    submitLabel: "Add Category",
+  };
+};
+
+const getAddItemForm = async (prefilledVals) => {
+  const classificationOption = await invModel.getClassifications();
+  const formData = [
+    {
+      name: "classificationId",
+      id: "classificationId",
+      label: "Classification",
+      type: {
+        select: true,
+        options: classificationOption.rows.map((row) => {
+          return {
+            value: row.classification_id,
+            label: row.classification_name,
+          };
+        }),
+      },
+      placeholder: "select a classification",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "make",
+      id: "make",
+      label: "Make",
+      type: "text",
+      placeholder: "vehicle make",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "model",
+      id: "model",
+      label: "Model",
+      type: "text",
+      placeholder: "vehicle model",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "description",
+      id: "description",
+      label: "Description",
+      type: "textarea",
+      placeholder: "vehicle description",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "imagePath",
+      id: "imagePath",
+      label: "Image Path",
+      type: "text",
+      placeholder: "path to vehicle image",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "thumbnailPath",
+      id: "thumbnailPath",
+      label: "Thumbnail Path",
+      type: "text",
+      placeholder: "path to vehicle thumbnail",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "price",
+      id: "price",
+      label: "Price",
+      type: "number",
+      placeholder: "vehicle price",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "year",
+      id: "year",
+      label: "Year",
+      type: "text",
+      placeholder: "vehicle year (4 digits)",
+      required: true,
+      pattern: "^[0-9]{4}$",
+      value: null,
+    },
+    {
+      name: "mileage",
+      id: "mileage",
+      label: "Mileage",
+      type: "number",
+      placeholder: "vehicle mileage",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "color",
+      id: "color",
+      label: "Color",
+      type: "text",
+      placeholder: "vehicle color",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/inv/add-item",
+    method: "POST",
+    submitLabel: "Add Vehicle",
+  };
+};
+
 export {
   getNavData,
   handleErrors,
@@ -160,4 +311,6 @@ export {
   pgSession,
   getLoginForm,
   getRegistrationForm,
+  getAddCategoryForm,
+  getAddItemForm,
 };

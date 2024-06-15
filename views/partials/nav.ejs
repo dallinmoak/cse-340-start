@@ -1,11 +1,12 @@
 <nav id="nav">
   <ul>
     <% navData.forEach(navItem=> { %>
-      <li>
-        <a href="/inv/type/<%- navItem.id%>" title="See our inventory of <%- navItem.name %>">
-          <%- navItem.name %>
-        </a>
-      </li>
-      <% }) %>
+    <li>
+      <a
+          href="/inv/type/<%- navItem.id%>"
+          title="See our inventory of <%- navItem.name %>"
+      ><%- navItem.name %></a>
+    </li>
+    <% }) %>
   </ul>
 </nav>

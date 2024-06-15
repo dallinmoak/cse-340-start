@@ -2,7 +2,9 @@
   <h1><%- classification.name %> Cars</h1>
   <ul>
     <% invList.forEach((vehicle)=> { %>
-      <%- include('../../partials/classification/vehicleListItem.ejs', {...vehicle}) %>
-        <% }) %>
+    <%- include(
+      '../../partials/classification/vehicleListItem.ejs',
+      {...vehicle}) %>
+    <% }) %>
   </ul>
 </div>

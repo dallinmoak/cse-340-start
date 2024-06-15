@@ -158,6 +158,10 @@ main {
 .formField input:valid:required + span::after, .formField input:valid:focus + span::after, .formField input:valid:focus-visible + span::after {
   content: "✅";
 }
+.formField label span.required {
+  color: red;
+  font-weight: bold;
+}
 
 #invItemComponent {
   display: flex;

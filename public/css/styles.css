@@ -145,8 +145,8 @@ main {
   font-size: 0.8rem;
 }
 .formField input:invalid:not(:placeholder-shown) {
-  border-color: red;
-  outline-color: red;
+  border-color: #b60000;
+  outline-color: #b60000;
 }
 .formField input:invalid:not(:placeholder-shown) + span::after {
   content: "❌";
@@ -159,7 +159,7 @@ main {
   content: "✅";
 }
 .formField label span.required {
-  color: red;
+  color: #b60000;
   font-weight: bold;
 }
 

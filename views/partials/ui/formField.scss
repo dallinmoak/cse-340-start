@@ -12,8 +12,8 @@
       font-size: 0.8rem;
     }
     &:invalid:not(:placeholder-shown) {
-      border-color: red;
-      outline-color: red;
+      border-color: $alert;
+      outline-color: $alert;
       & + span::after {
         content: "❌";
       }
@@ -32,7 +32,7 @@
   }
   label {
     span.required {
-      color: red;
+      color: $alert;
       font-weight: bold;
     }
   }

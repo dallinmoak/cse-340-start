@@ -7,6 +7,7 @@ import { errorResponder, pgSession } from "./utils/index.js";
 import connectFlash from "connect-flash";
 import expressMessages from "express-messages";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.use(expressLayouts);

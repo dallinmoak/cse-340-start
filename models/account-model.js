@@ -16,13 +16,22 @@ const createAccount = async (account) => {
 
 const emailIsDupe = async (email) => {
   try {
-    const queryText =
-      "SELECT * FROM course_340.account WHERE account_email = $1";
-    const res = await pool.query(queryText, [email]);
-    return res.rowCount > 0 ? true : false;
+    const rows = await getAccountByEmail(email);
+    return rows.length > 0 ? true : false;
   } catch (e) {
     console.log(e);
   }
 };
 
-export { createAccount, emailIsDupe };
+const getAccountByEmail = async (email) => {
+  try {
+    const queryText =
+      "SELECT * FROM course_340.account WHERE account_email = $1";
+    const res = await pool.query(queryText, [email]);
+    return res.rows;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { createAccount, emailIsDupe, getAccountByEmail };

@@ -11,19 +11,22 @@ const buildByClassificationId = async (req, res, next) => {
     const invData = await inventoryModel.getInventoryByClassificationId(
       classification_id
     );
-    if (!invData || invData.length === 0) {
+    if (!invData) {
       return next({
         status: 404,
         message: `classification id "${classification_id}" not found`,
       });
     }
+    const category = await inventoryModel.getClassificationById(
+      classification_id
+    );
     const navData = await getNavData();
     res.render("pages/inventory/classification", {
-      title: invData[0].classification_name,
+      title: category.classification_name,
       navData,
       classification: {
         id: classification_id,
-        name: invData[0].classification_name,
+        name: category.classification_name,
       },
       invList: invData,
     });

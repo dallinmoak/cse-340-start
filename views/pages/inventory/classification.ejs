@@ -1,5 +1,8 @@
 <div id="classificationList">
   <h1><%- classification.name %> Cars</h1>
+  <% if (invList.length === 0) { %>
+  <p>No vehicles on record for <%- classification.name %>.</p>
+  <% } else { %>
   <ul>
     <% invList.forEach((vehicle)=> { %>
     <%- include(
@@ -7,4 +10,5 @@
       {...vehicle}) %>
     <% }) %>
   </ul>
+  <% } %>
 </div>

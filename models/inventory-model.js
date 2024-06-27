@@ -7,6 +7,18 @@ const getClassifications = async () => {
   return data;
 };
 
+const getClassificationById = async (classificationId) => {
+  const queryText =
+    "SELECT * from course_340.classification WHERE classification_id = $1";
+  try {
+    const data = await pool.query(queryText, [classificationId]);
+    return data.rows[0];
+  } catch (e) {
+    console.error(e);
+    throw new Error(e.message);
+  }
+};
+
 const getInventoryByClassificationId = async (classificationId) => {
   const queryText =
     "SELECT * from course_340.inventory as i JOIN course_340.classification as c ON i.classification_id = c.classification_id WHERE c.classification_id = $1";
@@ -106,4 +118,5 @@ export default {
   createInventoryItem,
   categoryIsDupe,
   classificationIdIsDupe,
+  getClassificationById,
 };

@@ -57,7 +57,8 @@ const performLogin = async (req, res, next) => {
       if (passwordIsMatch) {
         const accountSanitized = { ...account, account_password: undefined };
         setLoginCookie(res, accountSanitized);
-        return res.redirect("/account");
+        req.flash("success", "Login successful");
+        res.redirect("/account");
       } else {
         return await loginError(req, res);
       }

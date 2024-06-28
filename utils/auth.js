@@ -2,24 +2,23 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 const checkAuth = (req, res) => {
-  let isAuthed = false;
   const incommingToken = req.cookies.jwt;
+  let isAuthed = null;
   if (incommingToken) {
     const callback = (e, payload) => {
       if (e) {
         console.error(e);
         res.clearCookie("jwt");
-        return;
       } else {
-        // console.log(payload);
-        isAuthed = true;
-        return;
+        // console.log("payload: ", payload);
+        isAuthed = payload;
       }
     };
     jwt.verify(incommingToken, process.env.TOKEN_SECRET, callback);
   }
   return isAuthed;
 };
+
 const validateProtectedRoute = (req, res, next) => {
   const isAuthed = checkAuth(req, res);
   if (isAuthed) {
@@ -51,4 +50,23 @@ const setLoginCookie = (res, payload) => {
   res.cookie("jwt", token, options);
 };
 
-export { validateProtectedRoute, validateloginPw, setLoginCookie };
+const authorizeByRoles = (roles, params) => {
+  const { req, res, next } = params;
+  const payload = checkAuth(req, res);
+  if (payload && roles.includes(payload.account_type)) {
+    console.log(
+      `user ${payload.account_email} authorized as ${payload.account_type}`
+    );
+    next();
+  } else {
+    req.flash("error", "You are not authorized to view this page");
+    res.redirect("/account/login");
+  }
+};
+
+export {
+  validateProtectedRoute,
+  validateloginPw,
+  setLoginCookie,
+  authorizeByRoles,
+};

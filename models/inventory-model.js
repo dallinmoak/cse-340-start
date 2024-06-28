@@ -110,6 +110,43 @@ const classificationIdIsDupe = async (classificationId) => {
   }
 };
 
+const updateInventoryItem = async (data) => {
+  const queryText = `UPDATE course_340.inventory SET 
+      inv_make = $1,
+      inv_model = $2,
+      inv_year = $3,
+      inv_description = $4,
+      inv_image = $5,
+      inv_thumbnail = $6,
+      inv_price = $7,
+      inv_miles = $8,
+      inv_color = $9,
+      classification_id = $10
+    WHERE inv_id = $11 RETURNING *`;
+  try {
+    const res = await pool.query(queryText, [
+      data.make,
+      data.model,
+      data.year,
+      data.description,
+      data.imagePath,
+      data.thumbnailPath,
+      data.price,
+      data.mileage,
+      data.color,
+      data.classificationId,
+      data.id,
+    ]);
+    if (res.rows.length === 0) {
+      throw new Error("query executed successfully, but nothing was updated");
+    }
+    return res.rows[0];
+  } catch (e) {
+    console.error(e);
+    throw new Error(e.message);
+  }
+};
+
 export default {
   getClassifications,
   getInventoryByClassificationId,
@@ -119,4 +156,5 @@ export default {
   categoryIsDupe,
   classificationIdIsDupe,
   getClassificationById,
+  updateInventoryItem,
 };

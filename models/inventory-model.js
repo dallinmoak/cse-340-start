@@ -147,6 +147,18 @@ const updateInventoryItem = async (data) => {
   }
 };
 
+const deleteInventoryItem = async (itemId) => {
+  const queryText =
+    "DELETE FROM course_340.inventory WHERE inv_id = $1 returning *";
+  try {
+    const res = await pool.query(queryText, [itemId]);
+    return res.rows[0];
+  } catch (e) {
+    console.error(e);
+    throw new Error(e.message);
+  }
+};
+
 export default {
   getClassifications,
   getInventoryByClassificationId,
@@ -157,4 +169,5 @@ export default {
   classificationIdIsDupe,
   getClassificationById,
   updateInventoryItem,
+  deleteInventoryItem,
 };

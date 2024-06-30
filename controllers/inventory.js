@@ -217,6 +217,37 @@ const editItem = async (req, res, next) => {
   }
 };
 
+const getDeleteForm = async (req, res, next) => {
+  const item = await inventoryModel.getInventoryItemById(req.params.itemId);
+  const formConfig = {
+    formData: [],
+    method: "POST",
+    action: `/inv/delete/${req.params.itemId}`,
+    submitLabel: "Yes I'm sure",
+  };
+  res.render("pages/inventory/delete-item", {
+    title: "Delete Vehicle",
+    navData: await getNavData(),
+    confirmation: `Are you sure you want to delete the ${item.inv_year} ${item.inv_make} ${item.inv_model} with id ${req.params.itemId}?`,
+    formConfig,
+  });
+};
+
+const performDelete = async (req, res, next) => {
+  try {
+    const deletedItem = await inventoryModel.deleteInventoryItem(
+      req.params.itemId
+    );
+    req.flash("success", `Item with id ${deletedItem.inv_id} deleted`);
+    res.redirect("/inv");
+  } catch (e) {
+    return next({
+      status: 500,
+      message: `error deleting item: ${e.message}`,
+    });
+  }
+};
+
 export default {
   buildByClassificationId,
   builByInventoryId,
@@ -228,4 +259,6 @@ export default {
   apiGetInventoryRecordsByType,
   getEditForm,
   editItem,
+  getDeleteForm,
+  performDelete,
 };

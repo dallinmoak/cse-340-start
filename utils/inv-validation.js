@@ -1,5 +1,5 @@
 import { body, validationResult } from "express-validator";
-import { getNavData, getAddCategoryForm, getAddItemForm } from "./index.js";
+import { getPageData, getAddCategoryForm, getAddItemForm } from "./index.js";
 import invModel from "../models/inventory-model.js";
 const classificationIdIsDupe = invModel.classificationIdIsDupe;
 const categoryIsDupe = invModel.categoryIsDupe;
@@ -29,7 +29,7 @@ const checkCategoryData = async (req, res, next) => {
     });
     res.render("pages/inventory/add-category", {
       title: "Add Vehicle Category",
-      navData: await getNavData(),
+      pageData: await getPageData(req, res),
       formConfig: getAddCategoryForm(req.body.name),
     });
     return;
@@ -98,7 +98,7 @@ const checkItemData = async (req, res, next) => {
     });
     res.render("pages/inventory/add-item", {
       title: "Add Vehicle Item",
-      navData: await getNavData(),
+      pageData: await getPageData(req, res),
       formConfig: await getAddItemForm({ ...req.body }),
     });
     return;

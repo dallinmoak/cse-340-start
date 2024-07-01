@@ -1,6 +1,6 @@
 import { createAccount, getAccountByEmail } from "../models/account-model.js";
 import {
-  getNavData,
+  getPageData,
   getLoginForm,
   getRegistrationForm,
 } from "../utils/index.js";
@@ -11,7 +11,7 @@ import { setLoginCookie, validateloginPw } from "../utils/auth.js";
 const getLoginPage = async (req, res) => {
   res.render("pages/account/login", {
     title: "Login",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: getLoginForm(),
   });
 };
@@ -29,7 +29,7 @@ const loginError = async (
   const prefils = { email: req.body.email };
   return res.render(`pages/account/${target}`, {
     title,
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: formGetter(prefils),
   });
 };
@@ -81,7 +81,7 @@ const performLogin = async (req, res, next) => {
 const getRegistrationPage = async (req, res) => {
   res.render("pages/account/register", {
     title: "Register",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: getRegistrationForm(),
   });
 };
@@ -101,7 +101,7 @@ const registerAccount = async (req, res, next) => {
       req.flash("success", "Account created successfully");
       res.status(201).render("pages/account/login", {
         title: "Login",
-        navData: await getNavData(),
+        pageData: await getPageData(req, res),
         formConfig: getLoginForm(),
       });
     } catch (e) {
@@ -123,7 +123,7 @@ const registerAccount = async (req, res, next) => {
 const renderAccountPage = async (req, res, next) => {
   res.render("pages/account/account", {
     title: "Account",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
   });
 };
 

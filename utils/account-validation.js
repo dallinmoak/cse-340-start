@@ -1,5 +1,5 @@
 import { body, validationResult } from "express-validator";
-import { getNavData, getRegistrationForm } from "./index.js";
+import { getPageData, getRegistrationForm } from "./index.js";
 import { emailIsDupe } from "../models/account-model.js";
 import { getLoginForm } from "./index.js";
 
@@ -56,7 +56,7 @@ const checkRegistrationData = async (req, res, next) => {
     });
     res.render("pages/account/register", {
       title: "Register",
-      navData: await getNavData(),
+      pageData: await getPageData(req, res),
       formConfig,
     });
     return;
@@ -97,7 +97,7 @@ const checkLoginData = async (req, res, next) => {
     });
     res.render("pages/account/login", {
       title: "Login",
-      navData: await getNavData(),
+      pageData: await getPageData(req, res),
       formConfig,
     });
     return;

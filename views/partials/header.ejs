@@ -6,9 +6,23 @@
     >CSE Motors</a>
   </span>
   <div id="tools">
+    <% if (pageData.user) { %>
+    <span>Welcome, <%- pageData.user.account_firstname %></span>
+    <div class="group">
+      <a
+          title="click to view your account"
+          href="/account"
+      >My Account</a>
+      <a
+          title="click to log out"
+          href="/account/logout"
+      >Logout</a>
+    </div>
+    <% } else { %>
     <a
         title="Click to log in"
         href="/account/login"
-    >My Account</a>
+    >Login</a>
+    <% } %>
   </div>
 </header>

@@ -120,13 +120,29 @@ main {
   font-size: 2.5em;
   color: #000;
 }
-#top-header #tools a {
+#top-header #tools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#top-header #tools .group {
+  min-width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+#top-header #tools a,
+#top-header #tools span {
   font-family: "Inter", sans-serif;
   font-variant: small-caps;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.5em;
   color: #000;
+}
+#top-header #tools span {
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 0.75em;
 }
 
 .formField {

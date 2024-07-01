@@ -1,7 +1,7 @@
 import {
   getAddCategoryForm,
   getAddItemForm,
-  getNavData,
+  getPageData,
 } from "../utils/index.js";
 import inventoryModel from "../models/inventory-model.js";
 
@@ -20,10 +20,10 @@ const buildByClassificationId = async (req, res, next) => {
     const category = await inventoryModel.getClassificationById(
       classification_id
     );
-    const navData = await getNavData();
+    const pageData = await getPageData(req, res);
     res.render("pages/inventory/classification", {
       title: category.classification_name,
-      navData,
+      pageData,
       classification: {
         id: classification_id,
         name: category.classification_name,
@@ -49,10 +49,10 @@ const builByInventoryId = async (req, res, next) => {
         message: `inventory item id "${req.params.itemId}" not found`,
       });
     }
-    const navData = await getNavData();
+    const pageData = await getPageData(req, res);
     res.render("pages/inventory/item", {
       title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
-      navData,
+      pageData,
       invItem,
     });
   } catch (e) {
@@ -86,7 +86,7 @@ const buildAdminView = async (req, res) => {
 
   res.render("pages/inventory/admin", {
     title: "Vehicle Management",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     viewCategoriesConfig,
   });
 };
@@ -94,7 +94,7 @@ const buildAdminView = async (req, res) => {
 const buildAddCategoryView = async (req, res) => {
   res.render("pages/inventory/add-category", {
     title: "Add Vehicle Category",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: getAddCategoryForm(),
   });
 };
@@ -124,7 +124,7 @@ const addCategory = async (req, res) => {
 const buildAddItemView = async (req, res) => {
   res.render("pages/inventory/add-item", {
     title: "Add Vehicle",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: await getAddItemForm(),
   });
 };
@@ -187,7 +187,7 @@ const getEditForm = async (req, res, next) => {
   };
   res.render("pages/inventory/edit-item", {
     title: `Edit ${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     formConfig: editForm,
   });
 };
@@ -227,7 +227,7 @@ const getDeleteForm = async (req, res, next) => {
   };
   res.render("pages/inventory/delete-item", {
     title: "Delete Vehicle",
-    navData: await getNavData(),
+    pageData: await getPageData(req, res),
     confirmation: `Are you sure you want to delete the ${item.inv_year} ${item.inv_make} ${item.inv_model} with id ${req.params.itemId}?`,
     formConfig,
   });

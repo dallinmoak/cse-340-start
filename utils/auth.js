@@ -65,6 +65,7 @@ const authorizeByRoles = (roles, params) => {
 };
 
 export {
+  checkAuth,
   validateProtectedRoute,
   validateloginPw,
   setLoginCookie,

@@ -34,4 +34,14 @@ const getAccountByEmail = async (email) => {
   }
 };
 
-export { createAccount, emailIsDupe, getAccountByEmail };
+const getAccountById = async (id) => {
+  try {
+    const queryText = "SELECT * FROM course_340.account WHERE account_id = $1";
+    const res = await pool.query(queryText, [id]);
+    return res.rows[0];
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { createAccount, emailIsDupe, getAccountByEmail, getAccountById };

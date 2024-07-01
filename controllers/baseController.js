@@ -1,12 +1,12 @@
 import { vehicle } from "../utils/homePageVehicle.js";
-import { getNavData } from "../utils/index.js";
+import { getPageData } from "../utils/index.js";
 
 const buildHome = async (req, res) => {
-  const navData = await getNavData();
+  const pageData = await getPageData(req, res);
   res.render("pages/home", {
     title: "Home",
     vehicle,
-    navData,
+    pageData,
   });
 };
 

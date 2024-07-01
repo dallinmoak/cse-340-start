@@ -1,12 +1,14 @@
 import invModel from "../models/inventory-model.js";
 import "dotenv/config";
+import { checkAuth } from "./auth.js";
+import { getAccountById } from "../models/account-model.js";
 
 import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 import pool from "../database/index.js";
 
 const { getClassifications } = invModel;
-const getNavData = async () => {
+const getPageData = async (req, res) => {
   const data = await getClassifications();
   const dataFormatted = data.rows.map((row) => {
     return {
@@ -14,7 +16,17 @@ const getNavData = async () => {
       name: row.classification_name,
     };
   });
-  return dataFormatted;
+  let user = null;
+  const authData = checkAuth(req, res);
+  if (authData?.account_id) {
+    user = await getAccountById(authData.account_id);
+  }
+  console.log("user", user);
+  return {
+    navData: dataFormatted,
+    user,
+    customData: "test value",
+  };
 };
 
 const handleErrors = (fn) => {
@@ -27,7 +39,7 @@ const handleErrors = (fn) => {
 };
 
 const errorResponder = async (e, req, res, next) => {
-  const navData = await getNavData();
+  const pageData = await getPageData(req, res);
   console.error(`error at ${req.originalUrl}`, e);
   if (process.env.NODE_ENV != "development") {
     if (e.status != 404) {
@@ -38,7 +50,7 @@ const errorResponder = async (e, req, res, next) => {
   res.render("errors/error", {
     title: e.status || "Server Error",
     message: e.message,
-    navData,
+    pageData,
   });
 };
 
@@ -305,7 +317,7 @@ const getAddItemForm = async (prefilledVals) => {
 };
 
 export {
-  getNavData,
+  getPageData,
   handleErrors,
   errorResponder,
   pgSession,

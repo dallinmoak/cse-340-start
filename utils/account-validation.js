@@ -49,8 +49,6 @@ const checkRegistrationData = async (req, res, next) => {
   if (!errorResult.isEmpty()) {
     const prefils = { firstName, lastName, email };
     const formConfig = getRegistrationForm(prefils);
-    console.log("prefils", prefils);
-    console.log("formConfig", formConfig);
     errorResult.array().forEach((error) => {
       req.flash("error", error.msg);
     });

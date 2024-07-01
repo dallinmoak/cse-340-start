@@ -21,7 +21,6 @@ const getPageData = async (req, res) => {
   if (authData?.account_id) {
     user = await getAccountById(authData.account_id);
   }
-  console.log("user", user);
   return {
     navData: dataFormatted,
     user,

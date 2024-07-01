@@ -106,7 +106,6 @@ const addCategory = async (req, res) => {
     if (!newRecord) {
       throw new Error("Error creating category");
     } else {
-      console.log("created category:", newRecord);
       req.flash(
         "success",
         `Category ${newRecord.classification_name} added successfully`
@@ -136,7 +135,6 @@ const addItem = async (req, res, next) => {
     if (!newRecord) {
       throw new Error("Error adding item");
     } else {
-      console.log("created item:", newRecord);
       req.flash(
         "success",
         `Vehicle with id ${newRecord.inv_id} added successfully`
@@ -199,7 +197,6 @@ const editItem = async (req, res, next) => {
   };
   try {
     const updatedItem = await inventoryModel.updateInventoryItem(editItems);
-    console.log("updating:", req.body, "for item id:", req.params.itemId);
     if (!updatedItem) {
       throw new Error("Error updating item");
     } else {

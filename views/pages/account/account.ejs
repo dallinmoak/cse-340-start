@@ -1,2 +1,12 @@
 <h1><%- title %></h1>
-<p>this is the account admin page. you shouldn't be able to see this if you're not logged in.</p>
+
+<p>todo: edit account details form</p>
+<p>todo: change password form</p>
+
+<% if ((pageData.user) && (pageData.user.account_type == "Employee" || pageData.user?.account_type == "Admin")) { %>
+<h3><%- pageData.user.account_type %> only content</h3>
+<a
+    title="manage inventory"
+    href="/inv"
+>Manage Inventory</a>
+<% } %>

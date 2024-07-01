@@ -129,14 +129,25 @@ main {
   min-width: fit-content;
   display: flex;
   flex-direction: column;
+  gap: 0.33em;
+  align-items: flex-end;
+}
+#top-header #tools a {
+  border: 1px solid #02b0d2;
+  border-radius: 0.4em;
+  padding: 0.125em 0.25em;
+  width: fit-content;
+}
+#top-header #tools a:hover {
+  background-color: #02b0d2;
+  color: #000;
 }
 #top-header #tools a,
 #top-header #tools span {
   font-family: "Inter", sans-serif;
-  font-variant: small-caps;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #000;
 }
 #top-header #tools span {

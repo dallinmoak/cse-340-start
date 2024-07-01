@@ -18,14 +18,25 @@
       min-width: fit-content;
       display: flex;
       flex-direction: column;
+      gap: 0.33em;
+      align-items: flex-end;
+    }
+    a {
+      border: 1px solid $highlightColor;
+      border-radius: 0.4em;
+      padding: 0.125em 0.25em;
+      width: fit-content;
+      &:hover {
+        background-color: $highlightColor;
+        color: $textColor;
+      }
     }
     & a,
     span {
       font-family: $mainSansFontFamily;
-      font-variant: small-caps;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.5em;
+      font-size: 1.3em;
       color: $textColor;
     }
     span {

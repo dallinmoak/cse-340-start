@@ -24,7 +24,6 @@ const getPageData = async (req, res) => {
   return {
     navData: dataFormatted,
     user,
-    customData: "test value",
   };
 };
 
@@ -104,6 +103,52 @@ const getLoginForm = (prefilledVals) => {
     action: "/account/login",
     method: "POST",
     submitLabel: "Login",
+  };
+};
+
+const getEditAccountForm = (prefilledVals) => {
+  const formData = [
+    {
+      name: "firstName",
+      id: "firstNameFirst Name",
+      label: "First Name",
+      type: "text",
+      placeholder: "enter first name",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "lastName",
+      id: "lastName",
+      label: "Last Name",
+      type: "text",
+      placeholder: "enter last name",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+    {
+      name: "email",
+      id: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "enter email",
+      required: true,
+      pattern: null,
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/account/update-details",
+    method: "POST",
+    submitLabel: "Update Details",
   };
 };
 
@@ -315,6 +360,33 @@ const getAddItemForm = async (prefilledVals) => {
   };
 };
 
+const getUpdatePwForm = (prefilledVals) => {
+  const formData = [
+    {
+      name: "password",
+      id: "password",
+      label: "Password",
+      type: "password",
+      required: true,
+      placeholder: "enter a password",
+      pattern:
+        "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$",
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    action: "/account/update-password",
+    method: "POST",
+    submitLabel: "Update Password",
+  };
+};
+
 export {
   getPageData,
   handleErrors,
@@ -324,4 +396,6 @@ export {
   getRegistrationForm,
   getAddCategoryForm,
   getAddItemForm,
+  getEditAccountForm,
+  getUpdatePwForm,
 };

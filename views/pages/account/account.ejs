@@ -1,7 +1,9 @@
 <h1><%- title %></h1>
 
-<p>todo: edit account details form</p>
-<p>todo: change password form</p>
+<a
+    title="Edit account details"
+    href="/account/edit-account"
+>Edit Account Details</a>
 
 <% if ((pageData.user) && (pageData.user.account_type == "Employee" || pageData.user?.account_type == "Admin")) { %>
 <h3><%- pageData.user.account_type %> only content</h3>

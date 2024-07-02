@@ -6,7 +6,9 @@
   <%- include('../partials/header', { pageData }) %>
   <%- include('../partials/nav') %>
   <main>
-    <%- messages() %>
+    <div class="messages">
+      <%- messages() %>
+    </div>
     <%- body %>
   </main>
   <%- include('../partials/footer') %>

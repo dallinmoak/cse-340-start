@@ -110,7 +110,7 @@ const getEditAccountForm = (prefilledVals) => {
   const formData = [
     {
       name: "firstName",
-      id: "firstNameFirst Name",
+      id: "firstName",
       label: "First Name",
       type: "text",
       placeholder: "enter first name",

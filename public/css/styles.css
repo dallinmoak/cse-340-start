@@ -9,6 +9,25 @@ body {
 main {
   padding: 0 0.5em;
 }
+main .messages ul {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+main .messages ul.error {
+  color: #800000;
+  background-color: #ff8585;
+  border-color: #800000;
+}
+main .messages ul.info {
+  color: #757500;
+  background-color: #ffff85;
+  border-color: #757500;
+}
+main .messages ul.success {
+  color: #007000;
+  background-color: #85ff85;
+  border-color: #007000;
+}
 
 @media screen and (min-width: 491px) {
   html {

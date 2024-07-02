@@ -6,6 +6,27 @@ body {
 
 main {
   padding: 0 0.5em;
+  .messages {
+    ul {
+      border: 1px solid black;
+      border-radius: 5px;
+      &.error {
+        color: $msgAlertFg;
+        background-color: $msgAlertBg;
+        border-color: $msgAlertFg;
+      }
+      &.info {
+        color: $msgInfoFg;
+        background-color: $msgInfoBg;
+        border-color: $msgInfoFg;
+      }
+      &.success {
+        color: $msgSuccessFg;
+        background-color: $msgSuccessBg;
+        border-color: $msgSuccessFg;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: $mobile-screen) {

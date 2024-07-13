@@ -151,25 +151,12 @@ main .messages ul.success {
   gap: 0.33em;
   align-items: flex-end;
 }
-#top-header #tools a {
-  border: 1px solid #02b0d2;
-  border-radius: 0.4em;
-  padding: 0.125em 0.25em;
-  width: fit-content;
-}
-#top-header #tools a:hover {
-  background-color: #02b0d2;
-  color: #000;
-}
-#top-header #tools a,
 #top-header #tools span {
   font-family: "Inter", sans-serif;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.3em;
   color: #000;
-}
-#top-header #tools span {
   text-align: center;
   font-size: 1.2em;
   margin-right: 0.75em;
@@ -207,6 +194,22 @@ main .messages ul.success {
 .formField label span.required {
   color: #b60000;
   font-weight: bold;
+}
+
+a.button {
+  border: 1px solid #02b0d2;
+  border-radius: 0.4em;
+  padding: 0.125em 0.25em;
+  width: fit-content;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3em;
+  color: #000;
+}
+a.button:hover {
+  background-color: #02b0d2;
+  color: #000;
 }
 
 #invItemComponent {

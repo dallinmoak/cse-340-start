@@ -1,5 +1,6 @@
 <a
+    <%- typeof href != "string" ? `id="${href[1]}"`: '' %>
     title="<%- title %>"
-    href="<%- href %>"
+    href="<%- typeof href == "string" ? href: href[0] %>"
     class="button"
 ><%- text %></a>

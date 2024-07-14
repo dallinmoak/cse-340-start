@@ -2,6 +2,7 @@ import {
   getAddCategoryForm,
   getAddItemForm,
   getPageData,
+  getReviewForm,
 } from "../utils/index.js";
 import inventoryModel from "../models/inventory-model.js";
 
@@ -50,10 +51,17 @@ const builByInventoryId = async (req, res, next) => {
       });
     }
     const pageData = await getPageData(req, res);
+    const reviewForm = getReviewForm(
+      null,
+      invItem.inv_id,
+      pageData.user?.account_id
+    );
     res.render("pages/inventory/item", {
       title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
       pageData,
       invItem,
+      reviewForm,
+      showForm: false,
     });
   } catch (e) {
     return next({

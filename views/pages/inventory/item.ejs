@@ -1,20 +1,24 @@
 <div class="invItemPage">
-  <h1><a href="../type/<%- invItem.classification_id%>"><%- invItem.classification_name %></a> > <%-
-      `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}` %></h1>
+  <h1><a href="../type/<%- invItem.classification_id%>"><%- invItem.classification_name %></a> > <%- title %></h1>
   <%- include('../../partials/inventory/item.ejs', {...invItem}) %>
 </div>
 
 <%- include('../../partials/review/item-review-list.ejs') %>
 <% if(pageData.user) { %>
 <% if(pageData.user.account_type === 'Client') { %>
-<%- include('../../partials/ui/button', {
+<div
+    id="action-button-wrapper"
+    <%- showForm? "hidden": "" %>
+>
+  <%- include('../../partials/ui/button', {
   title: "click to add a review",
   text: "Add Review",
   href: ["#", "add-review"],
 }) %>
+</div>
 <div
     id="add-review-form-wrapper"
-    hidden
+    <%- showForm? '' : 'hidden' %>
 >
   <%- include('../../partials/review/add-review-form.ejs') %>
 </div>
@@ -31,7 +35,8 @@
       e.preventDefault();
       const form = document.querySelector('#add-review-form-wrapper');
       form.hidden = !form.hidden;
-      button.hidden = !button.hidden;
+      const buttonWrapper = document.querySelector('#action-button-wrapper');
+      buttonWrapper.hidden = !buttonWrapper.hidden;
     });
   }
 </script>

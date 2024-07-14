@@ -1,1 +1,14 @@
-<p>list of reviews for <%- `${invItem.inv_make} ${invItem.inv_model}` %> will go here: </p>
+<h2>Reviews</h2>
+
+<% if (invItem.reviews && invItem.reviews.length > 0) { %>
+<ul>
+  <% invItem.reviews.forEach(review => { %>
+  <li>
+    <p>On&nbsp;<%- new Intl.DateTimeFormat('en-US', { dateStyle: "long", timeStyle: 'medium'}).format(review.date) %>,&nbsp;<strong><%- review.author.firstName.substr(0,1) + review.author.lastName %></strong>&nbsp;wrote:</p>
+    <p>"<%- review.text %>"</p>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p>No reviews found for this item.</p>
+<% } %>

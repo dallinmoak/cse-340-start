@@ -27,14 +27,11 @@ const checkReviewForm = async (req, res, next) => {
         req.params.productId
       );
       const pageData = await getPageData(req, res);
-      const body = req.body;
-      console.log("body", body);
       const reviewForm = getReviewForm(
         { review: req.body.review },
         invItem.inv_id,
         pageData.user?.account_id
       );
-      console.log("reviewForm", reviewForm);
       res.render("pages/inventory/item", {
         title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
         pageData,

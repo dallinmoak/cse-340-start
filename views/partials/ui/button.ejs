@@ -1,6 +1,19 @@
+<% if(elType == "a") { %>
 <a
-    <%- typeof href != "string" ? `id="${href[1]}"`: '' %>
+    <%- id ? `id="${id}"`: '' %>
     title="<%- title %>"
-    href="<%- typeof href == "string" ? href: href[0] %>"
+    <%- href ? `href="${href}"`: '' %>
     class="button"
-><%- text %></a>
+>
+  <%- text %>
+</a>
+<% } else if (elType == "button") { %>
+<button
+    <%- id ? `id="${id}"`: '' %>
+    title="<%- title %>"
+    class="button"
+    <%- type ? `type="${type}"`: '' %>
+>
+  <%- text %>
+</button>
+<% } %>

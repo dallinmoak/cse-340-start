@@ -5,5 +5,5 @@
   <% formConfig.formData.forEach(datum=> { %>
   <%- include("./formField", { ...datum }) %>
   <% }) %>
-  <button type="submit"><%- formConfig.submitLabel %></button>
+  <%- include("./button", { elType: "button", title: "submit", type: "submit", id: null, href: null, text: formConfig.submitLabel}) %>
 </form>

@@ -1,15 +1,19 @@
-a.button {
-  border: 1px solid $highlightColor;
-  border-radius: 0.4em;
-  padding: 0.125em 0.25em;
-  width: fit-content;
-  font-family: $mainSansFontFamily;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.3em;
-  color: $textColor;
-  &:hover {
-    background-color: $highlightColor;
+a,
+button {
+  &.button {
+    border: 1px solid $highlightColor;
+    border-radius: 0.4em;
+    padding: 0.125em 0.25em;
+    width: fit-content;
+    font-family: $mainSansFontFamily;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.3em;
     color: $textColor;
+    background-color: $backgroundColor;
+    &:hover {
+      background-color: $highlightColor;
+      color: $textColor;
+    }
   }
 }

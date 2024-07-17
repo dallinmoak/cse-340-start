@@ -10,9 +10,12 @@
       <%- showForm? "hidden": "" %>
   >
     <%- include('../../partials/ui/button', {
+        elType: "button",
         title: "click to add a review",
         text: "Add Review",
-        href: ["#", "add-review"],
+        id: "add-review",
+        type: null,
+        href: null,
 }) %>
   </div>
   <div

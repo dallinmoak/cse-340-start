@@ -23,7 +23,7 @@ const buildByClassificationId = async (req, res, next) => {
     );
     const pageData = await getPageData(req, res);
     res.render("pages/inventory/classification", {
-      title: category.classification_name,
+      title: `${category.classification_name} Cars`,
       pageData,
       classification: {
         id: classification_id,

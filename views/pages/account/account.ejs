@@ -1,9 +1,70 @@
-<h1><%- title %></h1>
+<div id="account-page">
+  <a
+      title="Edit account details"
+      href="/account/edit-account"
+  >Edit Account Details</a>
 
-<a
-    title="Edit account details"
-    href="/account/edit-account"
->Edit Account Details</a>
+  <% if(pageData.user.reviews) { %>
+  <h3>My Reviews</h3>
+  <% if(pageData.user.reviews.length > 0) { %>
+  <table>
+    <tbody>
+      <tr>
+        <th>Product</th>
+        <th>Review</th>
+      </tr>
+      <% pageData.user.reviews.map(review => { %>
+      <tr
+          id="review-<%- review.id %>"
+          class="review-row"
+      >
+        <td><a href="inv/item/<%- review.item.id %>"><%- `'${review.item.year.substr(2,2)} ${review.item.make} ${review.item.model}`%></a></td>
+        <td>
+          <div
+              id="edit-review-<%- review.id %>-form"
+              hidden
+          >
+            <%- include('../../partials/ui/form', {
+            formConfig: {
+              action: "editreviewpath",
+              method: "POST",
+              submitLabel: "Save",
+              formData: [
+                {
+                  id: "review",
+                  name: "review",
+                  label: 'Review',
+                  required: true,
+                  type: "textarea",
+                  pattern: null,
+                  value: review.text,
+                }
+              ]
+            }
+          }) %>
+          </div>
+          <div id="edit-review-<%- review.id %>-text">
+            <%- review.text %>
+          </div>
+        </td>
+        <td>
+          <div>
+            <%- include('../../partials/ui/button', {title: `edit review ${review.id}`, href: ["#", `edit-review-${review.id}-button`], text: "Edit"})%>
+          </div>
+        </td>
+
+</div>
+
+</tr>
+<% }) %>
+</tbody>
+</table>
+
+<% } else {%>
+<p>no reviews</p>
+<% } %>
+<% } %>
+
 
 <% if ((pageData.user) && (pageData.user.account_type == "Employee" || pageData.user?.account_type == "Admin")) { %>
 <h3><%- pageData.user.account_type %> only content</h3>
@@ -12,3 +73,22 @@
     href="/inv"
 >Manage Inventory</a>
 <% } %>
+</div>
+
+<script>
+  const reviewRows = document.querySelectorAll(".review-row");
+  let reviews = [];
+  reviewRows.forEach(row => {
+    // reviews.push(row.id.split("-")[1]);
+    const reviewId = row.id.split("-")[1];
+    const editButton = document.getElementById(`edit-review-${reviewId}-button`);
+    const editForm = document.getElementById(`edit-review-${reviewId}-form`);
+    const editText = document.getElementById(`edit-review-${reviewId}-text`);
+    editButton.addEventListener("click", () => {
+      editForm.hidden = !editForm.hidden;
+      editText.hidden = !editText.hidden;
+      editButton.innerText = editForm.hidden ? "Edit" : "Cancel";
+      editButton.title = editForm.hidden ? `Edit review ${reviewId}` : `Cancel review ${reviewId}`;
+    })
+  });
+</script>

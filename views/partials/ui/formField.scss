@@ -30,6 +30,12 @@
       }
     }
   }
+  input,
+  select,
+  option,
+  textarea {
+    font-family: $mainSerifFontFamily;
+  }
   label {
     span.required {
       color: $alert;

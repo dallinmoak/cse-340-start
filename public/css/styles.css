@@ -9,6 +9,12 @@ body {
 main {
   padding: 0 0.5em;
 }
+main h1.page-title {
+  font-family: "Inter", sans-serif;
+}
+main .messages {
+  font-family: "PT Serif", serif;
+}
 main .messages ul {
   border: 1px solid black;
   border-radius: 5px;
@@ -106,6 +112,36 @@ main .messages ul.success {
   max-width: 100%;
 }
 
+#account-page {
+  font-family: "Inter", sans-serif;
+}
+#account-page table {
+  border-spacing: 1px;
+}
+#account-page table tr {
+  height: 2em;
+}
+#account-page table tr th {
+  text-align: start;
+}
+#account-page table tr td,
+#account-page table tr th {
+  outline: 1px solid black;
+  padding: 1em 0.3em;
+}
+#account-page table tr td:nth-child(2),
+#account-page table tr th:nth-child(2) {
+  min-width: 11em;
+}
+#account-page table tr td:nth-child(3),
+#account-page table tr th:nth-child(3) {
+  vertical-align: top;
+}
+
+.footer {
+  font-family: "Inter", sans-serif;
+}
+
 #nav {
   background-color: #242332;
   color: #fff;
@@ -190,6 +226,12 @@ main .messages ul.success {
 }
 .formField input:valid:required + span::after, .formField input:valid:focus + span::after, .formField input:valid:focus-visible + span::after {
   content: "✅";
+}
+.formField input,
+.formField select,
+.formField option,
+.formField textarea {
+  font-family: "PT Serif", serif;
 }
 .formField label span.required {
   color: #b60000;

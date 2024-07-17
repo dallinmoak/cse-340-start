@@ -4,6 +4,7 @@ import {
   updateAccount,
   updateAccountPw,
 } from "../models/account-model.js";
+import { getReviewsByAuthor } from "../models/review.js";
 import {
   getPageData,
   getLoginForm,
@@ -128,10 +129,16 @@ const registerAccount = async (req, res, next) => {
 };
 
 const renderAccountPage = async (req, res, next) => {
-  res.render("pages/account/account", {
-    title: "Account",
-    pageData: await getPageData(req, res),
-  });
+  try {
+    const pageData = await getPageData(req, res);
+    const reviews = await getReviewsByAuthor(pageData.user.account_id);
+    res.render("pages/account/account", {
+      title: "Account",
+      pageData: { ...pageData, user: { ...pageData.user, reviews } },
+    });
+  } catch (e) {
+    throw new Error(e.message);
+  }
 };
 
 const performLogout = (req, res, next) => {

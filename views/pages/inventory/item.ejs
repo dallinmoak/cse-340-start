@@ -1,42 +1,42 @@
 <div class="invItemPage">
-  <h1><a href="../type/<%- invItem.classification_id%>"><%- invItem.classification_name %></a> > <%- title %></h1>
+  <h3><a href="../type/<%- invItem.classification_id%>"><%- invItem.classification_name %></a> > <%- title %></h3>
   <%- include('../../partials/inventory/item.ejs', {...invItem}) %>
-</div>
 
-<%- include('../../partials/review/item-review-list.ejs') %>
-<% if(pageData.user) { %>
-<% if(pageData.user.account_type === 'Client') { %>
-<div
-    id="action-button-wrapper"
-    <%- showForm? "hidden": "" %>
->
-  <%- include('../../partials/ui/button', {
-  title: "click to add a review",
-  text: "Add Review",
-  href: ["#", "add-review"],
+  <%- include('../../partials/review/item-review-list.ejs') %>
+  <% if(pageData.user) { %>
+  <% if(pageData.user.account_type === 'Client') { %>
+  <div
+      id="action-button-wrapper"
+      <%- showForm? "hidden": "" %>
+  >
+    <%- include('../../partials/ui/button', {
+        title: "click to add a review",
+        text: "Add Review",
+        href: ["#", "add-review"],
 }) %>
+  </div>
+  <div
+      id="add-review-form-wrapper"
+      <%- showForm? '' : 'hidden' %>
+  >
+    <%- include('../../partials/review/add-review-form.ejs') %>
+  </div>
+  <% } else { %>
+  <p>only clients can leave reviews.</p>
+  <% } %>
+  <% } else {%>
+  <p>please <a href="/account/login">log in</a> to leave a review.</p>
+  <% } %>
+  <script>
+    const button = document.getElementById('add-review');
+    if (button) {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const form = document.querySelector('#add-review-form-wrapper');
+        form.hidden = !form.hidden;
+        const buttonWrapper = document.querySelector('#action-button-wrapper');
+        buttonWrapper.hidden = !buttonWrapper.hidden;
+      });
+    }
+  </script>
 </div>
-<div
-    id="add-review-form-wrapper"
-    <%- showForm? '' : 'hidden' %>
->
-  <%- include('../../partials/review/add-review-form.ejs') %>
-</div>
-<% } else { %>
-<p>only clients can leave reviews.</p>
-<% } %>
-<% } else {%>
-<p>please <a href="/account/login">log in</a> to leave a review.</p>
-<% } %>
-<script>
-  const button = document.getElementById('add-review');
-  if (button) {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const form = document.querySelector('#add-review-form-wrapper');
-      form.hidden = !form.hidden;
-      const buttonWrapper = document.querySelector('#action-button-wrapper');
-      buttonWrapper.hidden = !buttonWrapper.hidden;
-    });
-  }
-</script>

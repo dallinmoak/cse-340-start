@@ -24,24 +24,7 @@
               id="edit-review-<%- review.id %>-form"
               hidden
           >
-            <%- include('../../partials/ui/form', {
-            formConfig: {
-              action: "editreviewpath",
-              method: "POST",
-              submitLabel: "Save",
-              formData: [
-                {
-                  id: "review",
-                  name: "review",
-                  label: 'Review',
-                  required: true,
-                  type: "textarea",
-                  pattern: null,
-                  value: review.text,
-                }
-              ]
-            }
-          }) %>
+            <%- include('../../partials/ui/form', {formConfig: review.formConfig}) %>
           </div>
           <div id="edit-review-<%- review.id %>-text">
             <%- review.text %>
@@ -52,7 +35,6 @@
             <%- include('../../partials/ui/button', {elType: 'button', title: `edit review ${review.id}`, id: `edit-review-${review.id}-button`, text: "Edit", type: null, href: null})%>
           </div>
         </td>
-
 </div>
 
 </tr>

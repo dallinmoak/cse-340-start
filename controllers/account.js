@@ -132,9 +132,33 @@ const renderAccountPage = async (req, res, next) => {
   try {
     const pageData = await getPageData(req, res);
     const reviews = await getReviewsByAuthor(pageData.user.account_id);
+    const reviewsWithForm = reviews.map((review) => {
+      return {
+        ...review,
+        formConfig: {
+          action: `/reviews/${review.id}`,
+          method: "PUT",
+          submitLabel: "Save",
+          formData: [
+            {
+              id: "review",
+              name: "review",
+              label: "Review",
+              required: true,
+              type: "textarea",
+              pattern: null,
+              value: review.text,
+            },
+          ],
+        },
+      };
+    });
     res.render("pages/account/account", {
       title: "Account",
-      pageData: { ...pageData, user: { ...pageData.user, reviews } },
+      pageData: {
+        ...pageData,
+        user: { ...pageData.user, reviews: reviewsWithForm },
+      },
     });
   } catch (e) {
     throw new Error(e.message);

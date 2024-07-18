@@ -15,7 +15,6 @@ const getReviewsByAuthor = async (authorId) => {
     const queryText = `select r.review_id as id, r.text, r.date, i.inv_id as inv_id, i.inv_make, i.inv_model, i.inv_year, a.account_id as author_id, a.account_firstname as author_firstName, a.account_lastname as author_lastName from course_340.review as r join course_340.inventory as i on r.inv_id = i.inv_id join course_340.account as a on r.author_id = a.account_id where r.author_id = $1`;
     const res = await pool.query(queryText, [authorId]);
     if (res) {
-      console.log("res", res);
       return res.rows.map((row) => {
         return {
           id: row.id,
@@ -70,7 +69,7 @@ const getReviewById = async (reviewId) => {
 const updateReviewbyId = async (reviewId, review) => {
   try {
     const queryText = `update course_340.review set text = $1, date= $3 where review_id = $2 returning *`;
-    const res = await query(queryText, [
+    const res = await pool.query(queryText, [
       review,
       reviewId,
       new Date().toISOString(),

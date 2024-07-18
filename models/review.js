@@ -84,7 +84,7 @@ const deleteReviewById = async (reviewId) => {
   try {
     const queryText =
       "delete from course_340.review where review_id = $1 returning *";
-    const res = await query(queryText, [reviewId]);
+    const res = await pool.query(queryText, [reviewId]);
     return res.rows[0];
   } catch (e) {
     throw new Error(e.message);

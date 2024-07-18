@@ -2,6 +2,7 @@ import {
   getAddCategoryForm,
   getAddItemForm,
   getPageData,
+  getReviewForm,
 } from "../utils/index.js";
 import inventoryModel from "../models/inventory-model.js";
 
@@ -22,7 +23,7 @@ const buildByClassificationId = async (req, res, next) => {
     );
     const pageData = await getPageData(req, res);
     res.render("pages/inventory/classification", {
-      title: category.classification_name,
+      title: `${category.classification_name} Cars`,
       pageData,
       classification: {
         id: classification_id,
@@ -50,16 +51,47 @@ const builByInventoryId = async (req, res, next) => {
       });
     }
     const pageData = await getPageData(req, res);
+    const reviewForm = getReviewForm(
+      null,
+      invItem.inv_id,
+      pageData.user?.account_id
+    );
     res.render("pages/inventory/item", {
       title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
       pageData,
       invItem,
+      reviewForm,
+      showForm: false,
     });
   } catch (e) {
     return next({
       status: 500,
       message: `error retrieving inventory data: ${e.message}`,
     });
+  }
+};
+
+const buildItemViewFromBadReviewVal = async (req, res, next) => {
+  try {
+    const invItem = await inventoryModel.getInventoryItemById(
+      req.params.productId
+    );
+    const pageData = await getPageData(req, res);
+    const reviewForm = getReviewForm(
+      { review: req.body.review },
+      invItem.inv_id,
+      pageData.user?.account_id
+    );
+    res.render("pages/inventory/item", {
+      title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
+      pageData,
+      invItem,
+      reviewForm,
+      showForm: true,
+    });
+    return;
+  } catch (e) {
+    throw new Error(e.message);
   }
 };
 
@@ -248,6 +280,7 @@ const performDelete = async (req, res, next) => {
 export default {
   buildByClassificationId,
   builByInventoryId,
+  buildItemViewFromBadReviewVal,
   buildAdminView,
   buildAddCategoryView,
   addCategory,

@@ -9,6 +9,12 @@ body {
 main {
   padding: 0 0.5em;
 }
+main h1.page-title {
+  font-family: "Inter", sans-serif;
+}
+main .messages {
+  font-family: "PT Serif", serif;
+}
 main .messages ul {
   border: 1px solid black;
   border-radius: 5px;
@@ -106,6 +112,46 @@ main .messages ul.success {
   max-width: 100%;
 }
 
+#account-page {
+  font-family: "Inter", sans-serif;
+}
+#account-page table {
+  border-spacing: 1px;
+}
+#account-page table tr {
+  height: 2em;
+}
+#account-page table tr th {
+  text-align: start;
+}
+#account-page table tr td,
+#account-page table tr th {
+  outline: 1px solid black;
+  padding: 1em 0.3em;
+}
+#account-page table tr td:nth-child(2),
+#account-page table tr th:nth-child(2) {
+  min-width: 11em;
+}
+#account-page table tr td:nth-child(3),
+#account-page table tr th:nth-child(3) {
+  vertical-align: top;
+}
+#account-page table tr td:nth-child(3) div .button,
+#account-page table tr th:nth-child(3) div .button {
+  margin-bottom: 0.1em;
+  margin-right: 0.1em;
+}
+#account-page table tr td:nth-child(3) div .confirm-contents,
+#account-page table tr th:nth-child(3) div .confirm-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer {
+  font-family: "Inter", sans-serif;
+}
+
 #nav {
   background-color: #242332;
   color: #fff;
@@ -151,31 +197,19 @@ main .messages ul.success {
   gap: 0.33em;
   align-items: flex-end;
 }
-#top-header #tools a {
-  border: 1px solid #02b0d2;
-  border-radius: 0.4em;
-  padding: 0.125em 0.25em;
-  width: fit-content;
-}
-#top-header #tools a:hover {
-  background-color: #02b0d2;
-  color: #000;
-}
-#top-header #tools a,
 #top-header #tools span {
   font-family: "Inter", sans-serif;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.3em;
   color: #000;
-}
-#top-header #tools span {
   text-align: center;
   font-size: 1.2em;
   margin-right: 0.75em;
 }
 
 .formField {
+  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
   max-width: 20rem;
@@ -204,9 +238,34 @@ main .messages ul.success {
 .formField input:valid:required + span::after, .formField input:valid:focus + span::after, .formField input:valid:focus-visible + span::after {
   content: "✅";
 }
+.formField input,
+.formField select,
+.formField option,
+.formField textarea {
+  font-family: "PT Serif", serif;
+}
 .formField label span.required {
   color: #b60000;
   font-weight: bold;
+}
+
+a.button,
+button.button {
+  border: 1px solid #02b0d2;
+  border-radius: 0.4em;
+  padding: 0.125em 0.25em;
+  width: fit-content;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3em;
+  color: #000;
+  background-color: #fff;
+}
+a.button:hover,
+button.button:hover {
+  background-color: #02b0d2;
+  color: #000;
 }
 
 #invItemComponent {

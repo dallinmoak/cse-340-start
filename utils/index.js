@@ -387,6 +387,31 @@ const getUpdatePwForm = (prefilledVals) => {
   };
 };
 
+const getReviewForm = (prefilledVals, invId, authorId) => {
+  const formData = [
+    {
+      id: "review",
+      name: "review",
+      label: "Review Text",
+      required: true,
+      type: "textarea",
+      pattern: null,
+      value: null,
+    },
+  ];
+  if (prefilledVals) {
+    formData.forEach((field) => {
+      field.value = prefilledVals[field.name];
+    });
+  }
+  return {
+    formData,
+    method: "POST",
+    action: `/review/${invId}?authorId=${authorId}`,
+    submitLabel: "Post Review",
+  };
+};
+
 export {
   getPageData,
   handleErrors,
@@ -398,4 +423,5 @@ export {
   getAddItemForm,
   getEditAccountForm,
   getUpdatePwForm,
+  getReviewForm,
 };

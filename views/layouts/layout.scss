@@ -6,7 +6,11 @@ body {
 
 main {
   padding: 0 0.5em;
+  h1.page-title {
+    font-family: $mainSansFontFamily;
+  }
   .messages {
+    font-family: $mainSerifFontFamily;
     ul {
       border: 1px solid black;
       border-radius: 5px;

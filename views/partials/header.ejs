@@ -9,20 +9,32 @@
     <% if (pageData.user) { %>
     <span>Welcome, <%- pageData.user.account_firstname %></span>
     <div class="group">
-      <a
-          title="click to view your account"
-          href="/account"
-      >My Account</a>
-      <a
-          title="click to log out"
-          href="/account/logout"
-      >Logout</a>
+      <%- include('./ui/button', {
+        elType: "a",
+        id: null,
+        title: "click to view your account",
+        text: "My Account",
+        href: "/account",
+        type: null,
+      }) %>
+      <%- include('./ui/button', {
+        elType: "a",
+        id: null,
+        title: "click to log out",
+        text: "Logout",
+        href: "/account/logout",
+        type: null,
+      }) %>
     </div>
     <% } else { %>
-    <a
-        title="Click to log in"
-        href="/account/login"
-    >Login</a>
+    <%- include('./ui/button', {
+      elType: "a",
+      id: null,
+      title: "click to log in",
+      text: "Login",
+      href: "/account/login",
+      type: null,
+    }) %>
     <% } %>
   </div>
 </header>

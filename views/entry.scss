@@ -23,18 +23,24 @@ $mainSerifFontFamily: "PT Serif", serif;
 $mobile-screen: 491px;
 
 // layouts
-@import "../views/layouts/layout.scss";
+@import "./layouts/layout.scss";
+
 // pages
-@import "../views/pages/home.scss";
-@import "../views/pages/inventory/classification.scss";
+@import "./pages/home.scss";
+@import "./pages/inventory/classification.scss";
+@import "./pages/account/account.scss";
+
 // components
-@import "../views/partials/nav.scss";
-@import "../views/partials/header.scss";
-@import "../views/partials/ui/formField.scss";
+@import "./partials/footer.scss";
+@import "./partials/nav.scss";
+@import "./partials/header.scss";
+@import "./partials/ui/formField.scss";
+@import "./partials/ui/buttons.scss";
+
 //inventory components
-@import "../views/partials/inventory/item.scss";
+@import "./partials/inventory/item.scss";
 
 //vehicle components
-@import "../views/partials/vehicle/vehiclefeatures.scss";
-@import "../views/partials/vehicle/vehicleReviews.scss";
-@import "../views/partials/vehicle/vehicleUpgrades.scss";
+@import "./partials/vehicle/vehiclefeatures.scss";
+@import "./partials/vehicle/vehicleReviews.scss";
+@import "./partials/vehicle/vehicleUpgrades.scss";

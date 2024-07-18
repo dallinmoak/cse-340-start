@@ -17,6 +17,16 @@
         }
         &:nth-child(3) {
           vertical-align: top;
+          div {
+            .button {
+              margin-bottom: 0.1em;
+              margin-right: 0.1em;
+            }
+            .confirm-contents {
+              display: flex;
+              flex-wrap: wrap;
+            }
+          }
         }
       }
     }

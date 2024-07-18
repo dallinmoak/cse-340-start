@@ -137,6 +137,16 @@ main .messages ul.success {
 #account-page table tr th:nth-child(3) {
   vertical-align: top;
 }
+#account-page table tr td:nth-child(3) div .button,
+#account-page table tr th:nth-child(3) div .button {
+  margin-bottom: 0.1em;
+  margin-right: 0.1em;
+}
+#account-page table tr td:nth-child(3) div .confirm-contents,
+#account-page table tr th:nth-child(3) div .confirm-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .footer {
   font-family: "Inter", sans-serif;

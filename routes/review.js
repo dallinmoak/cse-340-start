@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { addReview } from "../controllers/review.js";
+import { addReview, editReview, deleteReview } from "../controllers/review.js";
 import invController from "../controllers/inventory.js";
 const { buildItemViewFromBadReviewVal } = invController;
+import { renderAccountPageFromBadReviewVal } from "../controllers/account.js";
 import { authorizeByRoles } from "../utils/auth.js";
 import { validateNewReview } from "../utils/review-validation.js";
 
@@ -25,12 +26,10 @@ router.post(
 );
 router.post(
   "/edit/:reviewId",
-  ...verifyReviewRequest((req, res, next) => {
-    res.send("error");
-  }),
-  (req, res, next) => {
-    res.send("Updated review");
-  }
+  ...verifyReviewRequest(renderAccountPageFromBadReviewVal),
+  editReview
 );
+
+router.get("/delete/:reviewId", authorizeClient, deleteReview);
 
 export default router;

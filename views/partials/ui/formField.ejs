@@ -27,7 +27,6 @@
         id="<%- id %>"
         name="<%- name %>"
         <%- required? "required" : "" %>
-        <%- pattern? `pattern="${pattern}" `: "" %>
         data-hasval="<%- value ? "true" : "false" %>"
     ><%- value %></textarea>
     <% } else { %>

@@ -12,6 +12,7 @@
       <tr>
         <th>Product</th>
         <th>Review</th>
+        <th hidden></th>
       </tr>
       <% pageData.user.reviews.map(review => { %>
       <tr
@@ -22,46 +23,65 @@
         <td>
           <div
               id="edit-review-<%- review.id %>-form"
-              hidden
+              <%- review.editing ? "" : "hidden" %>
           >
             <%- include('../../partials/ui/form', {formConfig: review.formConfig}) %>
           </div>
-          <div id="edit-review-<%- review.id %>-text">
+          <div
+              id="edit-review-<%- review.id %>-text"
+              <%- review.editing? "hidden": ""%>
+          >
             <%- review.text %>
           </div>
         </td>
         <td>
           <div>
-            <%- include('../../partials/ui/button', {elType: 'button', title: `edit review ${review.id}`, id: `edit-review-${review.id}-button`, text: "Edit", type: null, href: null})%>
+            <%- include('../../partials/ui/button', {elType: "button", title: `${review.editing? "Cancel": "Edit"} review ${review.id}`, id: `edit-review-${review.id}-button`, text: review.editing? "Cancel": "Edit", type: null, href: null})%>
+            <%- include(`../../partials/ui/button`,{elType: 'button', title: `delete review ${review.id}`, id: `delete-review-${review.id}-button`, text: "Delete", type: null, href: null}) %>
+            <div
+                id="confirm-delete-wrapper-<%- review.id %>"
+                class="confirm-delete-wrapper"
+                hidden
+            >
+              <p>Are you sure?</p>
+              <div class="confirm-contents">
+                <%- include(`../../partials/ui/button`,{elType: 'a', title: `confirm delete review ${review.id}`, id: `confirm-delete-review-${review.id}-button`, text: "Delete", type: null, href: `/review/delete/${review.id}`}) %>
+                <%- include(`../../partials/ui/button`,{elType: 'button', title: `cancel delete review ${review.id}`, id: `canclel-review-${review.id}-button`, text: "Cancel", type: null, href: null}) %>
+              </div>
+            </div>
           </div>
         </td>
-</div>
 
-</tr>
-<% }) %>
-</tbody>
-</table>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 
-<% } else {%>
-<p>no reviews</p>
-<% } %>
-<% } %>
+  <% } else {%>
+  <p>no reviews</p>
+  <% } %>
+  <% } %>
 
 
-<% if ((pageData.user) && (pageData.user.account_type == "Employee" || pageData.user?.account_type == "Admin")) { %>
-<h3><%- pageData.user.account_type %> only content</h3>
-<a
-    title="manage inventory"
-    href="/inv"
->Manage Inventory</a>
-<% } %>
+  <% if ((pageData.user) && (pageData.user.account_type == "Employee" || pageData.user?.account_type == "Admin")) { %>
+  <h3><%- pageData.user.account_type %> only content</h3>
+  <a
+      title="manage inventory"
+      href="/inv"
+  >Manage Inventory</a>
+  <% } %>
 </div>
 
 <script>
   const reviewRows = document.querySelectorAll(".review-row");
   let reviews = [];
+  const toggleConfirmDelete = (id) => {
+    const wrapper = document.getElementById(`confirm-delete-wrapper-${id}`);
+    const deleteButton = document.getElementById(`delete-review-${id}-button`);
+    wrapper.hidden = !wrapper.hidden;
+    deleteButton.hidden = !deleteButton.hidden;
+  }
   reviewRows.forEach(row => {
-    // reviews.push(row.id.split("-")[1]);
     const reviewId = row.id.split("-")[1];
     const editButton = document.getElementById(`edit-review-${reviewId}-button`);
     const editForm = document.getElementById(`edit-review-${reviewId}-form`);
@@ -72,5 +92,17 @@
       editButton.innerText = editForm.hidden ? "Edit" : "Cancel";
       editButton.title = editForm.hidden ? `Edit review ${reviewId}` : `Cancel review ${reviewId}`;
     })
+    const deleteButton = document.getElementById(`delete-review-${reviewId}-button`);
+    console.log(`for record ${reviewId}, deleteButton is captured:`, deleteButton);
+    const confirmDeleteWrapper = document.getElementById(`confirm-delete-wrapper-${reviewId}`);
+    console.log(`for record ${reviewId}, confirmDeleteWrapper is captured:`, confirmDeleteWrapper);
+    const cancelDeleteButton = document.getElementById(`canclel-review-${reviewId}-button`);
+    deleteButton.addEventListener("click", () => {
+      console.log(`delete button for record ${reviewId} clicked`);
+      toggleConfirmDelete(reviewId);
+    });
+    cancelDeleteButton.addEventListener("click", () => {
+      toggleConfirmDelete(reviewId);
+    });
   });
 </script>

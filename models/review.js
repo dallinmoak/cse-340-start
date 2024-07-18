@@ -1,7 +1,7 @@
 import pool from "../database/index.js";
 const { query } = pool;
 
-const saveReview = async (id, authorId, review) => {
+const createReview = async (id, authorId, review) => {
   try {
     const queryText = `insert into course_340.review (inv_id, author_id, text) values ($1, $2, $3) returning *`;
     const res = await query(queryText, [id, authorId, review]);
@@ -63,4 +63,35 @@ const getReviewById = async (reviewId) => {
   }
 };
 
-export { saveReview, getReviewsByAuthor, getReviewById };
+const updateReviewbyId = async (reviewId, review) => {
+  try {
+    const queryText = `update course_340.review set text = $1, date= $3 where review_id = $2 returning *`;
+    const res = await query(queryText, [
+      review,
+      reviewId,
+      new Date().toISOString(),
+    ]);
+    return res.rows[0];
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const deleteReviewById = async (reviewId) => {
+  try {
+    const queryText =
+      "delete from course_340.review where review_id = $1 returning *";
+    const res = await query(queryText, [reviewId]);
+    return res.rows[0];
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+export {
+  createReview,
+  getReviewsByAuthor,
+  getReviewById,
+  updateReviewbyId,
+  deleteReviewById,
+};

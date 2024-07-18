@@ -31,7 +31,6 @@ router.get("/logout", performLogout);
 router.get("/register", getRegistrationPage);
 router.post(
   "/register",
-  validateProtectedRoute,
   registrationRules,
   checkRegistrationData,
   registerAccount

@@ -4,6 +4,7 @@ import {
   updateAccount,
   updateAccountPw,
 } from "../models/account-model.js";
+import { getReviewsByAuthor } from "../models/review.js";
 import {
   getPageData,
   getLoginForm,
@@ -128,10 +129,80 @@ const registerAccount = async (req, res, next) => {
 };
 
 const renderAccountPage = async (req, res, next) => {
-  res.render("pages/account/account", {
-    title: "Account",
-    pageData: await getPageData(req, res),
-  });
+  try {
+    const pageData = await getPageData(req, res);
+    const reviews = await getReviewsByAuthor(pageData.user.account_id);
+    const reviewsWithForm = reviews.map((review) => {
+      return {
+        ...review,
+        editing: false,
+        formConfig: {
+          action: `/review/edit/${review.id}`,
+          method: "POST",
+          submitLabel: "Save",
+          formData: [
+            {
+              id: `review-input-${review.id}`,
+              name: "review",
+              label: "Review",
+              required: true,
+              type: "textarea",
+              pattern: "^.{3,}$",
+              value: review.text,
+            },
+          ],
+        },
+      };
+    });
+    res.render("pages/account/account", {
+      title: "Account",
+      pageData: {
+        ...pageData,
+        user: { ...pageData.user, reviews: reviewsWithForm },
+      },
+    });
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const renderAccountPageFromBadReviewVal = async (req, res, next) => {
+  try {
+    const pageData = await getPageData(req, res);
+    const reviews = await getReviewsByAuthor(pageData.user.account_id);
+    const currentReview = req.params.reviewId;
+    const reviewsWithForm = reviews.map((review) => {
+      return {
+        ...review,
+        editing: review.id == currentReview,
+        formConfig: {
+          action: `/review/edit/${review.id}`,
+          method: "POST",
+          submitLabel: "Save",
+          formData: [
+            {
+              id: `review-input-${review.id}`,
+              name: "review",
+              label: "Review",
+              required: true,
+              type: "textarea",
+              pattern: "^.{3,}$",
+              value: review.id == currentReview ? req.body.review : review.text,
+            },
+          ],
+        },
+      };
+    });
+    res.render("pages/account/account", {
+      title: "Account",
+      pageData: {
+        ...pageData,
+        user: { ...pageData.user, reviews: reviewsWithForm },
+      },
+    });
+  } catch (e) {
+    throw new Error(e.message);
+  }
 };
 
 const performLogout = (req, res, next) => {
@@ -220,6 +291,7 @@ export {
   registerAccount,
   performLogin,
   renderAccountPage,
+  renderAccountPageFromBadReviewVal,
   performLogout,
   getEditAccountPage,
   performAccountUpdate,

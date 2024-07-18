@@ -33,10 +33,40 @@ const getInventoryByClassificationId = async (classificationId) => {
 
 const getInventoryItemById = async (itemId) => {
   const queryText =
-    "SELECT * from course_340.inventory as i join course_340.classification as c on i.classification_id = c.classification_id WHERE inv_id = $1";
+    "select i.inv_id, i.inv_make, i.inv_model, i.inv_year, i.inv_description, i.inv_image, i.inv_thumbnail, i.inv_price, i.inv_miles, i.inv_color, i.classification_id, c.classification_name, r.review_id, r.text, r.date, r.author_id, a.account_firstname as author_firstname, a.account_lastname as author_lastname, a.account_email as author_email, a.account_type as author_type from course_340.inventory as i join course_340.classification as c on i.classification_id = c.classification_id left join course_340.review as r on i.inv_id = r.inv_id left join course_340.account a on r.author_id = a.account_id where i.inv_id = $1";
   try {
     const data = await pool.query(queryText, [itemId]);
-    return data.rows[0];
+    const reviews = data.rows.map((r) => {
+      return r.review_id === null
+        ? undefined
+        : {
+            id: r.review_id,
+            invId: r.inv_id,
+            text: r.text,
+            date: r.date,
+            author: {
+              id: r.author_id,
+              firstName: r.author_firstname,
+              lastName: r.author_lastname,
+              email: r.author_email,
+              type: r.author_type,
+            },
+          };
+    });
+    let item = data.rows[0];
+    if (reviews[0]) {
+      item.reviews = reviews;
+    }
+    delete item.review_id;
+    delete item.text;
+    delete item.author_id;
+    delete item.date;
+    delete item.author_id;
+    delete item.author_firstname;
+    delete item.author_lastname;
+    delete item.author_email;
+    delete item.author_type;
+    return item;
   } catch (e) {
     console.error(e);
     throw new Error(e.message);

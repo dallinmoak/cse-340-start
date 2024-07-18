@@ -21,25 +21,12 @@
       gap: 0.33em;
       align-items: flex-end;
     }
-    a {
-      border: 1px solid $highlightColor;
-      border-radius: 0.4em;
-      padding: 0.125em 0.25em;
-      width: fit-content;
-      &:hover {
-        background-color: $highlightColor;
-        color: $textColor;
-      }
-    }
-    & a,
     span {
       font-family: $mainSansFontFamily;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.3em;
       color: $textColor;
-    }
-    span {
       text-align: center;
       font-size: 1.2em;
       margin-right: 0.75em;

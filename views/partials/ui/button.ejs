@@ -1,0 +1,19 @@
+<% if(elType == "a") { %>
+<a
+    <%- id ? `id="${id}"`: '' %>
+    title="<%- title %>"
+    <%- href ? `href="${href}"`: '' %>
+    class="button"
+>
+  <%- text %>
+</a>
+<% } else if (elType == "button") { %>
+<button
+    <%- id ? `id="${id}"`: '' %>
+    title="<%- title %>"
+    class="button"
+    <%- type ? `type="${type}"`: '' %>
+>
+  <%- text %>
+</button>
+<% } %>

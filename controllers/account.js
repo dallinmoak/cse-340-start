@@ -136,8 +136,8 @@ const renderAccountPage = async (req, res, next) => {
       return {
         ...review,
         formConfig: {
-          action: `/reviews/${review.id}`,
-          method: "PUT",
+          action: `/review/edit/${review.id}`,
+          method: "POST",
           submitLabel: "Save",
           formData: [
             {

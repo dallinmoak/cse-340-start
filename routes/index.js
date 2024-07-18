@@ -16,6 +16,7 @@ router.use("/account", h(accountRouter));
 router.use("/review", h(reviewRouter));
 router.use("/broken", h(brokenController.buildBroken));
 router.use(async (req, res, next) => {
+  console.log("uncaught route:", req.path, req.method);
   next({
     status: 404,
     message: `route "${req.path}" not found`,

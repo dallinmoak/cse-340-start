@@ -71,6 +71,30 @@ const builByInventoryId = async (req, res, next) => {
   }
 };
 
+const buildItemViewFromBadReviewVal = async (req, res, next) => {
+  try {
+    const invItem = await inventoryModel.getInventoryItemById(
+      req.params.productId
+    );
+    const pageData = await getPageData(req, res);
+    const reviewForm = getReviewForm(
+      { review: req.body.review },
+      invItem.inv_id,
+      pageData.user?.account_id
+    );
+    res.render("pages/inventory/item", {
+      title: `${invItem.inv_year} ${invItem.inv_make} ${invItem.inv_model}`,
+      pageData,
+      invItem,
+      reviewForm,
+      showForm: true,
+    });
+    return;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 const buildAdminView = async (req, res) => {
   const categories = (await inventoryModel.getClassifications()).rows.map(
     (row) => {
@@ -256,6 +280,7 @@ const performDelete = async (req, res, next) => {
 export default {
   buildByClassificationId,
   builByInventoryId,
+  buildItemViewFromBadReviewVal,
   buildAdminView,
   buildAddCategoryView,
   addCategory,
